@@ -1,0 +1,63 @@
+% CREATED BY DAVID FRISK, 2016
+\chapter{Theory} \label{theory}
+
+In the following sections, the theory for different equations is explained
+
+\section{Mean square displacement (MSD)} \label{theory_msd}
+
+MSD is the most common measure of the spatial extent of random motion, and is measured 
+over time to determine if a particle is spreading solely due to diffusion, or if there 
+are contributions of other forces\cite{tarantino2014tnf}. The MSD in 1-dimension is defined as
+
+\begin{align}
+    MSD(\tau)   &=  \langle (x(t+\tau)-x(t))^2\rangle \\
+                &=  \dfrac{1}{N-\tau}\sum_{t=1}^{N}\left( x(\tau+t)-x(t)\right)^2
+\end{align}
+
+and in 2-dimension
+
+\begin{align}
+    MSD(\tau)   &=  \langle (x(t+\tau)-x(t))^2 + (y(t+\tau)-y(t))^2\rangle \label{eqn:2dim_msd}\\
+                &=  \dfrac{1}{N-\tau}\sum_{t=1}^{N}\left( x(\tau+t)-x(t)\right)^2 + \left( y(\tau+t)-y(t)\right)^2
+\end{align}
+
+\section{Velocity} \label{theory_velocity}
+
+Having the coordinates of the particles in each frame and the frame rate of the camera, 
+the velocity can be calculated as follows
+
+\begin{align}
+    \begin{array}{lr}
+        v_t^i = \dfrac{\sqrt{\left(x_{t+1}^i-x_t^i\right)^2+\left(y_{t+1}^i-y_t^i\right)^2}}{r^{-1}}, 
+        & \text{for } t=0,\ldots,F-2\\
+        & \text{for } i=0,\ldots,N-1
+    \end{array}
+    \label{eq:velocity_1par1}
+\end{align}
+
+where $F$ is the total number of frames that was tracked for particle $i$, $N$ is the total number of 
+particles for the experiment at hand and $r$ is the frame rate. 
+The expression above can be simplified further to
+
+\begin{align}
+    \begin{array}{lr}
+        v_t^i = r\sqrt{\left(x_{t+1}^i-x_t^i\right)^2+\left(y_{t+1}^i-y_t^i\right)^2}, 
+        & \text{for } t=0,\ldots,F-2\\
+        & \text{for } i=0,\ldots,N-1
+    \end{array}
+    \label{eq:velocity_1par2}
+\end{align}
+
+For particle $i$ we can obtain $F^i-1$ velocity points. To collect the velocity points 
+for an experiment for all the frames and all the active particles in one long vector, the
+vector will have the dimension $\bm{v}\in\mathbb{R}^{(F-N)\times1}$, and $F$ is the total 
+number of frames that was tracked for the specific experiment i.e. $F=\sum_{i=0}^{N-1}F^i$. 
+Note that an experiment corresponds to a specific number of active particles $N$, 
+specific number of passive particles $C$ and the weight of the passive particles $W$.
+Now  the average velocity of the active particles for an experiment can be calculated as
+
+\begin{align}
+        \langle\bm{v}\rangle    &=   \sum_{i=0}^{N-1}\sum_{t=0}^{F-2}v_t^i \\
+                                &=   r\sum_{i=0}^{N-1}\sum_{t=0}^{F-2}\sqrt{\left(x_{t+1}^i-x_t^i\right)^2+\left(y_{t+1}^i-y_t^i\right)^2}, 
+    \label{eq:velocity_average}
+\end{align}

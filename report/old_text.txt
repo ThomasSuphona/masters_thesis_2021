@@ -1,0 +1,74 @@
+Introduction 
+
+	With many particle systems, one of the most interesting aspects is the complex collective behaviors that emerge. 
+	In nature, this behavior can be observed in, schools of fish moving as a unit, flocks 
+	of birds flying uniformly as group, herd of land animals and even human crowds. These phenomena are fascinating 
+	to observe and study because the mechanisms behind the collective behaviors are far from obvious. 
+	%This remarkable feature of equilibrium systems has been studied in great detail for the last couple of decades and 
+	%concepts like scaling, universality, and renormalization have resulted in systematic picture of a wide range of systems 
+	%in physics\cite{vicsek1995novel, stanley1971phase}.
+	Collective behaviours, as a feature of systems, have been studied in great detail for the last decades. This has 
+	provided concepts like scaling and universality, which have resulted in a systematic picture and deeper 
+	understanding of a wide range of systems in physics\cite{vicsek1995novel, stanley1971phase}.
+
+	%When studying these multiple-particle systems, it is preferable to refer them as brownian particles and there 
+	%are two types, active and passive brownian particles. 
+	In litteratures it is common to conceptionalize the elements of these multiple-particle systems as brownian particles. 
+	The two types of brownian particles are active brownian particles and passive brownian particles.
+	Active brownian particles, also known as microswimmers\cite{volpe2014simulation}, 
+	in contrast of passive brownian particles, are capable of taking up energy from their environment and converting 
+	it into directed motion\cite{bechinger2016active, ebbens2010pursuit}. These active particles are biological or manmade microscopic and 
+	nanoscopic objects that are capable of self-propusion. This ability of self-propulsion is a common feature in 
+	microorganisms\cite{lauga2009hydrodynamics, cates2012diffusive, poon2013clarkia}, which allows the organisms for a 
+	more efficient way to search for nutrients or avoid toxic substances\cite{viswanathan2011physics}. 
+	In the biological realm, examples of active particles include all living organisms and their motile 
+	constituents such as molecular motors \cite{ramaswamy2010mechanics}. On the other hand, the motion of passive 
+	Brownian particles is driven by equilibrium thermal fluctuations due to random collisions with the surrounding 
+	fluid molecules\cite{babivc2005colloids}. 
+
+	Because of this property of active brownian particles, 
+	their dynamics cannot be described by matter of thermal equilibrium, including, for example, 
+	swarming and the emergence of other collective properties\cite{schweitzer2007brownian}.
+
+
+	In recent years, active Brownian motion has attracted a lot of interest from the biology and physics 
+	communities\cite{ebbens2010pursuit, poon2013clarkia}. Several types of microscopic biological entities perform 
+	active Brownian motion; a paradigmatic example is the swimming behavior of bacteria such as Escherichia coli
+	\cite{volpe2014simulation}. Understanding their motion can provide insight into out-of-equilibrium phenomena
+	\cite{volpe2014simulation} and lead to the development of novel strategies for designing smart devices and materials\cite{bechinger2016active}.
+	A significant and growing effort has been pushed in recent years, to advancing this field and to explore its applications in a 
+	diverse set of disciplines\cite{bechinger2016active}. Some of them are for example statistical physics\cite{ramaswamy2010mechanics}, 
+	biology\cite{viswanathan2011physics}, robotics\cite{brambilla2013swarm}, social transport\cite{helbing2001traffic}, 
+	soft matter\cite{marchetti2013hydrodynamics} and biomedicine\cite{wang2012nano}.
+
+	In the perspective of application, active particles provide great hope in addressing challenges of our modern societies
+	such as personalized health care, environmental sustainability and security\cite{nelson2010microrobots, 
+	wang2012nano, patra2013intelligent, gao2014environmental, ebbens2016active}. The possibility of designing and 
+	using active particles in real world application is immense, ranging from the targeted delivery of drugs, 
+	biomarkers, or contrast agents in health care applications\cite{nelson2010microrobots, wang2012nano, patra2013intelligent, abdelmohsen2014micro} to 
+	the autonomous depollution of water and soils, climate changes, or chemical terroristic attacks in sustainability and
+	security applications\cite{gao2014environmental}.
+
+	%One of the key feature of active particles is their capability of self-propulsion.
+	Self-propelled particles were originally studied to model the swarm behavior of animals at the macroscale\cite{bechinger2016active}. 
+	Reynolds introduced in 1987 a ''Boids model'' to simulate noncolliding aggregate motion, such as that of 
+	flocks of birds, heards of land animals, and schools of fish within computer graphics applications\cite{reynolds1987flocks}. 
+	In 1995, Vicsek and co-authors introduced the ''Vicsek model'' where the swarm behavior is modelled by active particles 
+	that are driven with a constant absolute velocity and they tend to align with the average direction of motion of the 
+	particles in their neighbourhood\cite{vicsek1995novel}. The Vicsek model was the first model to look at collective motion 
+	as a noise-induced phase transition. Then later on, several other models have been introduced aiming to study and 
+	explain the properties of collective behaviours\cite{chate2008modeling,grossmann2013self,barberis2016large,mijalkov2016engineering, 
+	volpe2016effective,matsui2017noise,cambui2017finite}. Experimental studies has also been done on systems with 
+	complex collective behaviours\cite{czirok1996formation, palacci2013living, theurkauff2012dynamic, ginot2015nonequilibrium, morin2017distortion}.
+	The collective behavior in swarming systems turns out to 
+	occur in many different scales and furthermore the behaviours are robust and universal e.g. the animals share 
+	group-level properties, irrespective of the type of animals in the group\cite{buhl2006disorder}.
+
+	This property of universality and scalabilty of collective behaviour will be the main focus 
+	of this paper, especially on systems in macroscale. And efforts will be made in trying to answer 
+	whether a model describing the behaviour of active brownian particles is scalable i.e. valid 
+	in different scales.
+
+	%While there has been alot of work done in this field ranging from studies of cells and bacterias, 
+	%simulations of many particles systems, there isn't much studies of the macro scale. In this paper we 
+	%aim to dig deeper the see the scalability if this phenomena in macro scale.
