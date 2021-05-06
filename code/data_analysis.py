@@ -428,7 +428,7 @@ def plot_mean_velocity(velocityPath):
     plt.show()
 
 
-dataPath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/traj_data/2W1100C15B*'
+dataPath = 'C:/Users/THOMAS/Desktop/master_thesis_2021/code/traj_data/2W1100C15B*'
 #velocityPath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/velocity_data/*W700C20B*'
 plot_trajs(dataPath)
 #msd_individual(dataPath)
