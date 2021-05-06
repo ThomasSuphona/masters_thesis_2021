@@ -1,0 +1,13 @@
+*.aux
+*.bbl
+*.bcf
+*.lof
+*.log
+*.out
+*.xml
+*.gz
+*.toc
+*.png
+*.h5
+*.pdf
+*.avi
