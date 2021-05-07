@@ -11,6 +11,8 @@ from matplotlib.pyplot import quiver
 import pims
 import trackpy as tp
 import os
+from matplotlib.colors import ListedColormap
+import matplotlib.colors
 
 
 def plot_trajs(dataPath):
@@ -22,14 +24,14 @@ def plot_trajs(dataPath):
     listOfFiles = glob.glob(dataPath)
     listOfFiles = natsorted(listOfFiles)
 
+    #fig, ax = plt.subplots(figsize=(1.266, 1.075), dpi=1000)
     fig, ax = plt.subplots()
     ax.set_axis_off()
+
     for ifile, file in enumerate(listOfFiles):
         fileName = ntpath.basename(file)
-        imagePath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/' \
+        imagePath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/' \
                     'image_sequences/' + fileName.split('.')[0] + '/*png'
-        #listOfImages = glob.glob(imagePath)
-        #listOfImages = natsorted(listOfImages)
 
         frames = gray(pims.ImageSequence(imagePath))
 
@@ -40,11 +42,21 @@ def plot_trajs(dataPath):
         trajs1 = tp.filter_stubs(trajs, 0)
         trajs2 = trajs1[(trajs1['mass'] > 4500)]
 
-        f = -1
-        tp.plot_traj(trajs2[:f], superimpose=frames[f],
-                     ax=ax, plot_style={'color': 'red', 'alpha': 0.5})
+        f = 1000
+
+        trajs3 = trajs2[trajs2.frame < f]
 
 
+        tp.plot_traj(trajs3,
+                     superimpose=frames[f],
+                     ax=ax,
+                     plot_style={'color': 'red', 'alpha': 0.6, 'linewidth': 0.5}
+                     )
+
+        outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/traj_images/' \
+                  + fileName.split('.')[0] + '_traj.png'
+
+    plt.savefig(outpath, bbox_inches='tight', dpi=1000, pad_inches=0.0)
     plt.show()
 
 def msd_individual(dataPath):
@@ -428,7 +440,7 @@ def plot_mean_velocity(velocityPath):
     plt.show()
 
 
-dataPath = 'C:/Users/THOMAS/Desktop/master_thesis_2021/code/traj_data/2W1100C15B*'
+dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W1100C15B*'
 #velocityPath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/velocity_data/*W700C20B*'
 plot_trajs(dataPath)
 #msd_individual(dataPath)

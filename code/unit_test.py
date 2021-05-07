@@ -1,14 +1,36 @@
 import numpy as np
-import pandas as pd
+from matplotlib import pyplot as plt, colors, cm
 
-import matplotlib.pyplot as plt
+# quick and dirty test data
+ext = np.linspace(0., 1., 21)
+coords, _ = np.meshgrid(ext, ext)
 
-fig, ax = plt.subplots()
-u = -1
-v = -1
-f = ax.quiver([0.5], [0.5], [u], [v], angles='xy', scale_units='xy', scale=0.1)
+x = coords.flatten()
+y = coords.T.flatten()
 
+vals = 1. - np.sin(coords * np.pi / 2).flatten()
 
-print(np.mod(1, 2))
-ax.set_xlim([-1, 2])
-ax.set_ylim([0, 2])
+# color dict
+cdict = {'red': ((0., 1., 1.),
+                 (1., 0., 0.)),
+        'red': ((0., 1., 1.),
+                 (1., 0., 0.)),
+        'red': ((0., 1., 1.),
+                 (1., 0., 0.)),
+        'alpha': ((0., 0., 0.),
+                   (1., 1., 1.))}
+# colormap from dict
+testcmap = colors.LinearSegmentedColormap('test', cdict)
+
+# plotting
+fig, ax = plt.subplots(1)
+ax.set_facecolor('black')
+
+ax.tripcolor(x, y, vals, cmap='test')
+
+fig2, ax2 = plt.subplots(1)
+ax2.set_facecolor('black')
+
+ax2.scatter(x, y, c=vals, cmap='test')
+
+plt.show()
