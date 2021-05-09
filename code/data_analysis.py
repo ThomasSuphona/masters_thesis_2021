@@ -13,6 +13,7 @@ import trackpy as tp
 import os
 from matplotlib.colors import ListedColormap
 import matplotlib.colors
+import plot_lib as pl
 
 
 def plot_trajs(dataPath):
@@ -442,10 +443,23 @@ def plot_mean_velocity(velocityPath):
 
 dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W1100C15B*'
 #velocityPath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/velocity_data/*W700C20B*'
-plot_trajs(dataPath)
+#plot_trajs(dataPath)
 #msd_individual(dataPath)
 #msd_ensemble(dataPath, 0)
 #velocity_calc_save(velocityPath)
 #plot_velocity(velocityPath, 1)
 #plot_orientation(velocityPath, 1) # doesn't work
 #plot_mean_velocity(velocityPath)
+
+
+x = np.linspace(0, 100)
+y = x
+pl.update_settings(usetex=True)
+fig, ax = pl.create_fig(ncols=2, nrows=2, height=1.65)
+ax[0, 0].plot(x, y)
+pl.add_label(ax[0, 0], text='a')
+ax[0, 1].plot(x, y)
+ax[1, 0].plot(x, y)
+ax[1, 1].plot(x, y)
+fig.savefig('C:/Users/THOMAS/Desktop/test1.png')
+#plt.show()
