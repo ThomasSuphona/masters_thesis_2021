@@ -1,4 +1,4 @@
 import numpy as np
 
 
-print('sadfasdf')
+print('wasting time')
