@@ -34,24 +34,26 @@ def plot_trajs(dataPath):
         imagePath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/' \
                     'image_sequences/' + fileName.split('.')[0] + '/*png'
 
-        frames = gray(pims.ImageSequence(imagePath))
-
+        #frames = gray(pims.ImageSequence(imagePath))
+        frames = pims.ImageSequence(imagePath)
         with tp.PandasHDFStore(file) as s:
             trajs = pd.concat(iter(s))
         s.close()
 
         trajs1 = tp.filter_stubs(trajs, 0)
         trajs2 = trajs1[(trajs1['mass'] > 4500)]
-
-        f = 1000
+        #trajs2 = trajs1[(trajs1['mass'] > 3000)] # for older vids
+        
+        f_last = len(frames)-1
+        f = 180
 
         trajs3 = trajs2[trajs2.frame < f]
-
-
+        trajs3 = trajs3[trajs3.particle == 1]
+        
         tp.plot_traj(trajs3,
                      superimpose=frames[f],
                      ax=ax,
-                     plot_style={'color': 'red', 'alpha': 0.6, 'linewidth': 0.5}
+                     plot_style={'color': 'red', 'alpha': 1, 'linewidth': 1}
                      )
 
         outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/traj_images/' \
@@ -441,9 +443,9 @@ def plot_mean_velocity(velocityPath):
     plt.show()
 
 
-dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W1100C15B*'
+dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W0C2B*'
 #velocityPath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/velocity_data/*W700C20B*'
-#plot_trajs(dataPath)
+plot_trajs(dataPath)
 #msd_individual(dataPath)
 #msd_ensemble(dataPath, 0)
 #velocity_calc_save(velocityPath)
@@ -452,14 +454,14 @@ dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W1100C15
 #plot_mean_velocity(velocityPath)
 
 
-x = np.linspace(0, 100)
-y = x
-pl.update_settings(usetex=True)
-fig, ax = pl.create_fig(ncols=2, nrows=2, height=1.65)
-ax[0, 0].plot(x, y)
-pl.add_label(ax[0, 0], text='a')
-ax[0, 1].plot(x, y)
-ax[1, 0].plot(x, y)
-ax[1, 1].plot(x, y)
-fig.savefig('C:/Users/THOMAS/Desktop/test1.png')
+#x = np.linspace(0, 100)
+#y = x
+#pl.update_settings(usetex=True)
+#fig, ax = pl.create_fig(ncols=2, nrows=2, height=1.65)
+#ax[0, 0].plot(x, y)
+#pl.add_label(ax[0, 0], text='a')
+#ax[0, 1].plot(x, y)
+#ax[1, 0].plot(x, y)
+#ax[1, 1].plot(x, y)
+#fig.savefig('C:/Users/THOMAS/Desktop/test1.png')
 #plt.show()

@@ -104,11 +104,13 @@ def read_imagesequences(imagePath):
 
     listOfFolders = glob.glob(imagePath)
     listOfFolders = natsorted(listOfFolders)
+    print(listOfFolders)
 
     for ifolder, folder in enumerate(listOfFolders[:]):
         folderName = ntpath.basename(folder)
         print('Reading image sequences: '+folderName)
-        imagePath = folder+'/*.png'
+        imagePath = folder+'/*.jpg'
+
 
     frames = pims.ImageSequence(imagePath)
 
@@ -116,7 +118,7 @@ def read_imagesequences(imagePath):
     return frames
 
 def locate_bug_one_frame(frames):
-    n = 100
+    n = 0
 
     diameter = 17
     separation = 20
@@ -212,14 +214,14 @@ def locate_link_save_data():
     #mpp = 701.37
     #fps = 30
 
-    imagePath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/image_sequences_old/C20B838P0M'
-    outputPath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/traj_data_old/'
+    imagePath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/image_sequences_old/20B491P2M'
+    outputPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data_old/'
     listOfFolders = glob.glob(imagePath)
     listOfFolders = natsorted(listOfFolders)
 
     for ifolder, folder in enumerate(listOfFolders[:]):
         folderName = ntpath.basename(folder)
-        imagePath = folder + '/*.png'
+        imagePath = folder + '/*.jpg'
         outputPathData = outputPath+folderName+'.h5'
         print(folderName)
 
@@ -263,7 +265,7 @@ def img_to_video():
         video.release()
 
 
-#imagePath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/image_sequences_old/C20B838P0M'
+#imagePath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/image_sequences_old/20B491P2M'
 #frames = read_imagesequences(imagePath)
 #totalNbrFrames = len(frames)
 #print('Total number frames: ', totalNbrFrames)
