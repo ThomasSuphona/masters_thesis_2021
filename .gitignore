@@ -18,3 +18,6 @@
 *.mat
 *.pptx
 *.jpg
+*.blg
+*.fls
+*.fdb_latexmk

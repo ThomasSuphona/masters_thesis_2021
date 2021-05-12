@@ -34,26 +34,26 @@ def plot_trajs(dataPath):
         imagePath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/' \
                     'image_sequences/' + fileName.split('.')[0] + '/*png'
 
-        #frames = gray(pims.ImageSequence(imagePath))
-        frames = pims.ImageSequence(imagePath)
+        frames = gray(pims.ImageSequence(imagePath))
+        #frames = pims.ImageSequence(imagePath) # old vids
         with tp.PandasHDFStore(file) as s:
             trajs = pd.concat(iter(s))
         s.close()
 
-        trajs1 = tp.filter_stubs(trajs, 0)
-        trajs2 = trajs1[(trajs1['mass'] > 4500)]
+        trajs = tp.filter_stubs(trajs, 0)
+        trajs = trajs[(trajs['mass'] > 4500)]
         #trajs2 = trajs1[(trajs1['mass'] > 3000)] # for older vids
         
         f_last = len(frames)-1
-        f = 180
+        f = f_last
 
-        trajs3 = trajs2[trajs2.frame < f]
-        trajs3 = trajs3[trajs3.particle == 1]
+        trajs = trajs[trajs.frame < f]
         
-        tp.plot_traj(trajs3,
+        
+        tp.plot_traj(trajs,
                      superimpose=frames[f],
                      ax=ax,
-                     plot_style={'color': 'red', 'alpha': 1, 'linewidth': 1}
+                     plot_style={'color': 'red', 'alpha': 0.2, 'linewidth': 1}
                      )
 
         outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/traj_images/' \
@@ -443,7 +443,7 @@ def plot_mean_velocity(velocityPath):
     plt.show()
 
 
-dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W0C2B*'
+dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/1W1100C15B*'
 #velocityPath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/velocity_data/*W700C20B*'
 plot_trajs(dataPath)
 #msd_individual(dataPath)
