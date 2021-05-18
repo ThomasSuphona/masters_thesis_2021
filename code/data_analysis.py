@@ -26,7 +26,7 @@ def plot_trajs(dataPath):
     listOfFiles = glob.glob(dataPath)
     listOfFiles = natsorted(listOfFiles)
     listOfFiles = listOfFiles[::-1]
-    listOfFiles = listOfFiles[::3]
+    listOfFiles = listOfFiles[::2]
     
     pl.update_settings(usetex=True)
     fig, axs = pl.create_fig(ncols=1, nrows=4, height=1.65)
@@ -46,7 +46,7 @@ def plot_trajs(dataPath):
                         'image_sequences/' + fileName.split('.')[0] +  \
                         '/frame-{:04d}.png'.format(frameNbr)
           
-            
+            print(fileName)
             frame = gray(pims.ImageSequence(imagePath))
             #frames = pims.ImageSequence(imagePath) # old vids
 
@@ -74,11 +74,14 @@ def plot_trajs(dataPath):
             w = int(s.split('W')[0])
             c = int(s.split('W')[1].split('C')[0])
             b = int(s.split('W')[1].split('C')[1].split('B')[0])
-            label = '$N_{passive}$='+str(c)
+            clabel = '$N_{passive}=%d$'%c
+            wlabel = '$m_{passive}=%d\cdot10^{-3}$kg'%(2+5*w)
+            blabel = '$N_{active}=%d$'%b
+            label = blabel
             #pl.add_label(ax, text=label)
             ax.set_title(label)
 
-    outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/traj_images/2WNC15B_traj.png'
+    outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/traj_images/1W1100CNB_traj.png'
     
     #plt.subplots_adjust(hspace = .01)
     plt.savefig(outpath, bbox_inches='tight', dpi=1000, pad_inches=0.0)
@@ -115,11 +118,11 @@ def msd_individual(dataPath):
 def msd_ensemble(dataPath, N):
     mpp = 0.89/1266
     fps = 30            #yeah fps = 1
-    max_lagtime = 900    # frames
+    max_lagtime = 600    # frames
 
     listOfFiles = glob.glob(dataPath)
     listOfFiles = natsorted(listOfFiles)
-    listOfFiles = listOfFiles[::3]
+    listOfFiles = listOfFiles[:-2]
 
     pl.update_settings(usetex=True)
     fig, axs = pl.create_fig(ncols=1, nrows=1, height=1.65)
@@ -150,12 +153,15 @@ def msd_ensemble(dataPath, N):
             if N == 0:
                 title = weightTitle
                 label = weightLabel
+                outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/msd_plots/NW{:d}C{:d}B_msd.png'.format(nbrObstacles, nbrActive)
             elif N == 1:
                 title = obstaclesTitle
                 label = obstaclesLabel
+                outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/msd_plots/{:d}WNC{:d}B_msd.png'.format(nbrWeight, nbrActive)
             elif N == 2:
                 title = bugTitle
                 label = bugLabel
+                outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/msd_plots/{:d}W{:d}CNB_msd.png'.format(nbrWeight, nbrObstacles)
 
             with tp.PandasHDFStore(file) as s:
                 trajs = pd.concat(iter(s))
@@ -169,7 +175,8 @@ def msd_ensemble(dataPath, N):
             #trajs3 = tp.subtract_drift(trajs2.copy(), d)
 
             em = tp.emsd(trajs, mpp, fps, max_lagtime=max_lagtime)
-            p = ax.plot(em.index, em, 'o', label=label)
+            p = ax.plot(em.index, em, 'o', label=label, markersize=5)
+            #p = ax.plot(em.index, em/em.index, 'o', label=label)
 
             n = tp.utils.fit_powerlaw(em, plot=False).n.msd
             A = tp.utils.fit_powerlaw(em, plot=False).A.msd
@@ -179,13 +186,14 @@ def msd_ensemble(dataPath, N):
         ax.set_yscale('log')
         ax.set_xlabel(r'lagtime $\tau$ [s]')
         ax.set_ylabel(r'MSD($\tau$) [$m^2$]')
+        #ax.set_ylabel(r'MSD($\tau$)/$\tau$ [$m^2$]')
 
-    outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/msd_plots/2WNC15B_msd.png'
+    
     
     
     #plt.subplots_adjust(hspace = .01)
     #plt.savefig(outpath, bbox_inches='tight', dpi=1000, pad_inches=0.0)
-    plt.legend(loc='upper left', prop={'size': 6})
+    plt.legend(loc='upper left', prop={'size': 5})
     plt.savefig(outpath, bbox_inches='tight')
     plt.show()
  
@@ -504,12 +512,12 @@ def plot_images(dataPath):
     plt.savefig(outpath, bbox_inches='tight', dpi=1000, pad_inches=0.0)
     plt.show()
 
-dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/2W*C15B*'
+dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/1W1100C*'
 imagePath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/image_sequences/1W1000C*'
 #velocityPath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/velocity_data/*W700C20B*'
-#plot_trajs(dataPath)
+plot_trajs(dataPath)
 #msd_individual(dataPath)
-msd_ensemble(dataPath, 1)
+#msd_ensemble(dataPath, 2)
 #velocity_calc_save(velocityPath)
 #plot_velocity(velocityPath, 1)
 #plot_orientation(velocityPath, 1) # doesn't work
