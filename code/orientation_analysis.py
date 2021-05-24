@@ -77,21 +77,16 @@ def read_data(listOfFiles):
 def plot_angularvelocity_histogram(angularVelocity, N):
 
 
-    nbrExperiments = len(angularVelocity)
     nameExperiments = list(angularVelocity.keys())
 
-    #bins = 10000
-    bins = 'freedman'
-
-    color = ['r', 'g', 'b', 'y', 'c', 'm', 'k']
     count = 0
 
     d = {}
 
-    for iexp, experiment in enumerate(nameExperiments[::2]):
+    for iexp, experiment in enumerate(nameExperiments[:]):
     #for experiment in nameExperiments:
         angVel = angularVelocity[experiment][3]
-        angVel = angVel[np.nonzero(angVel)]
+        #angVel = angVel[np.nonzero(angVel)]
         #angVel = angVel[angVel >= 0.00001]
         w = int(angularVelocity[experiment][0])
         c = int(angularVelocity[experiment][1])
@@ -118,22 +113,19 @@ def plot_angularvelocity_histogram(angularVelocity, N):
         #hist(angVel, bins=bins, histtype='stepfilled', alpha=0.3, density=True, label=label, color=color[count])
 
         #hist(angVel, bins=bins, histtype='step', density=True, color=color[count])
-        fps = 30
+    
         d[label] = angVel[:1000] / 5
 
         count += 1
 
     df = pd.DataFrame(d)
-    #sns.histplot(df, palette='bright')
+
     sns.kdeplot(data=df, fill=False, common_norm=False, palette="bright",
                 alpha=.5, linewidth=1, cumulative=False)
-    #plt.title(f'Velocity histogram of active particles \n with {c} passive particles of weight {5*w+2}g')
     plt.title(title)
     plt.xlim(-5, 5)
     plt.xlabel(r'$\omega$ [rad/s]')
     plt.ylabel(r'density')
-    #plt.legend(facecolor='white', framealpha=1)
-    #plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
     plt.show()
 
 def plot_angular_velocity_density_distribution(angularVelocity):
@@ -181,10 +173,10 @@ def plot_angular_velocity_density_distribution(angularVelocity):
     plt.show()
 
 
-listOfFiles = glob.glob('C:/Users/THOMAS/Desktop/master_thesis_2020/main_data/1W600C*')
+listOfFiles = glob.glob('C:/Users/THOMAS/Desktop/masters_thesis_2021/main_data/*W200C10B*')
 #listOfFiles = glob.glob('C:/Users/THOMAS/Desktop/master_thesis_2020/main_data_orientation/*')
 listOfFiles = natsorted(listOfFiles, reverse=False)
 angularVelocity = read_data(listOfFiles)
 
-plot_angularvelocity_histogram(angularVelocity, 2)
+plot_angularvelocity_histogram(angularVelocity, 0)
 #plot_angular_velocity_density_distribution(angularVelocity)

@@ -72,11 +72,11 @@ def read_imagesequences(imagePath):
     return frames
 
 def locate_bug_one_frame(frames):
-    n = 2
+    n = 140
 
     diameter = 17
     separation = 20
-    minmass = 5000 # 3450
+    minmass = 4500 # 3450
     smoothing_size = None
     maxsize = None
 
@@ -193,11 +193,11 @@ def locate_link_save_data():
         s.close()
 
 
-#imagePath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/image_sequences/0W900C1B*'
-#frames = read_imagesequences(imagePath)
-#totalNbrFrames = len(frames)
-#print('Total number frames: ', totalNbrFrames)
-#locate_bug_one_frame(frames)
+imagePath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/image_sequences/0W500C1B*'
+frames = read_imagesequences(imagePath)
+totalNbrFrames = len(frames)
+print('Total number frames: ', totalNbrFrames)
+locate_bug_one_frame(frames)
 
 #diameter = 17
 #separation = 20
