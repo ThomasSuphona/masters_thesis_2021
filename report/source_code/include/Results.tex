@@ -21,13 +21,27 @@ What is to be expected is the result from \cite{nilsson2017metastable}
 where the MSD for the active particles is higher at a low noise level, in our case 
 low obstacle weight, and the MSD lower at a high noise level, high obstacle weight in our case. 
 Other expected results from the experiment are also that MSD will be higher for cases with low obstacle density.
-%The results below confirms the expectations.
 
 Firstly the active particles MSD is measured as a function of number of bugs.
 In \cref{fig:msd_NB} the MSD of the active particles is calculated in 4 cases with 
-different obstacle weight and number of obstacles. A general trend can be observed 
-from \cref{fig:msd_NB} where the MSD is lower when the number of active particles 
-is high, and inversely the MSD is higher when the number of active particles is low.
+different obstacle weights. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.8\textwidth]{figure/MSD/NB_msd.pdf}
+    \caption{MSD for the active particles in 4 different experiments where the number of 
+    active particles is used as a parameter. As can be seen, the MSD is slightly lower when the number
+    of active particles is high and this trend holds for different obstacle weights, 
+    which is shown in $\textbf{(a)}$ with $m_{\text{passive}}=\SI{2e-3}{kg}$, 
+    $\textbf{(b)}$ $m_{\text{passive}}=\SI{7e-3}{kg}$, 
+    $\textbf{(c)}$ $m_{\text{passive}}=\SI{12e-3}{kg}$, 
+    and $\textbf{(d)}$ $m_{\text{passive}}=\SI{17e-3}{kg}$.} 
+    \label{fig:msd_NB}
+\end{figure}
+
+A general trend can be observed from \cref{fig:msd_NB} where the MSD is lower 
+when the number of active particles is high, and inversely the MSD is higher 
+when the number of active particles is low.
 
 How the number of active particles affect the MSD is not obvious, compared to the 
 obstacle weight as a parameter where there is a strong intuition of the fact that 
@@ -36,124 +50,53 @@ There are though certain behaviors from the active particles that depend on
 their number and might in turn affect the MSD. This will be discussed further in 
 \cref{collective_behaviors}\\
 
-%experiments with 100 obstacles with mass of $\SI{17e-3}{kg}$ each, 
-%and the different lines corresponds to different number of bugs. As can be observed here is that the 
-%MSD for the different cases have similar shape where they increase linearly in the beginning and plateau 
-%at some point. The plateau starts in most cases around $\tau\approx\SI{2e2}{\second}$ and the differences 
-%between the lines is that they are shifted vertically depending on the number of bugs that were used in the experiments.
-%The lowest line(blue line in \cref{fig:temp}) which is the lowest MSD value corresponds to the experiment 
-%with 1 bug and the highest line(light purple) corresponds to the experiment with 25 bugs. 
-%All the intermediate lines follow the trend where higher MSD corresponds with higher number of bugs.
-
-%\begin{figure}[htpb]
-%    \centering
-%    %\captionsetup{justification=centering}
-%    %\captionsetup{format = hang, width=8cm}
-%    \captionsetup{justification=centering,margin=2cm}
-%    \includegraphics[width=.7\textwidth]{figure/MSD/MSD_ACTIVE_3W100CNB.png}
-%    \caption{MSD for the active particles with each 
-%    line corresponding to different number of active particles, and 
-%    all cases is done using 100 obstacles with mass $\SI{17e-3}{kg}$ each. Here 
-%    the MSD is higher for the cases of high number of bugs.}
-%    \label{fig:msd_active_3W100CNB}
-%\end{figure}
-
-
-\begin{figure}[htbp]
-\centering
-%\captionsetup{justification=centering,margin=2cm}
-\subfloat[0 obstacles\label{fig:0W0CNB}]
-{\includegraphics[width=.5\textwidth]{figure/MSD/0W0CNB.png}}
-\subfloat[$N_{\text{passive}}=\SI{2e-3}{kg}$ \label{fig:0W500CNB}]
-{\includegraphics[width=.5\textwidth]{figure/MSD/0W500CNB.png}}\\
-\subfloat[$N_{\text{passive}}=\SI{12e-3}{kg}$\label{fig:2W500CNB}]
-{\includegraphics[width=.5\textwidth]{figure/MSD/2W500CNB.png}}
-\subfloat[$N_{\text{passive}}=\SI{17e-3}{kg}$\label{fig:3W500CNB}]
-{\includegraphics[width=.5\textwidth]{figure/MSD/3W500CNB.png}}
-\caption{MSD for the active particles in 4 different experiments where the number of 
-active particles is used as a parameter. As can be seen, the MSD is lower when the number
-of active particles is high and this trend holds for different obstacle weights and number of obstacles, 
-which is shown in $\textbf{(a)}$, $\textbf{(b)}$, $\textbf{(c)}$ and $\textbf{(d)}$} 
-\label{fig:msd_NB}
-\end{figure}
-
 For the case of varying the weight of the obstacles, the result is shown in \cref{fig:msd_NW}.
 
-%\begin{figure}[htpb]
-%    \centering
-%    %\captionsetup{justification=centering}
-%    %\captionsetup{format = hang, width=8cm}
-%    \captionsetup{justification=centering,margin=2cm}
-%    \includegraphics[width=.7\textwidth]{figure/MSD/MSD_ACTIVE_NW700C25B.png}
-%    \caption{MSD for the active particles, now with varying obstacle weight where each 
-%    line corresponding to different obstacle weight, and 
-%    all cases is done using 700 obstacles ($N_{\text{passive}}=700$) 
-%    and 25 bugs ($N_{\text{active}}=25$). An expected result where the MSD decreases 
-%    as the obstacle weight increases.}
-%    \label{fig:msd_active_NW700C25B}
-%\end{figure}
-
-
 \begin{figure}[htbp]
-\centering
-%\captionsetup{justification=centering,margin=2cm}
-\subfloat[$N_{\text{active}}=10$ \label{fig:NW700C10B}]
-{\includegraphics[width=.5\textwidth]{figure/MSD/NW700C10B.png}}
-\subfloat[$N_{\text{active}}=15$ \label{fig:NW700C15B}]
-{\includegraphics[width=.5\textwidth]{figure/MSD/NW700C15B.png}}\\
-\subfloat[$N_{\text{active}}=20$ \label{fig:NW700C20B}]
-{\includegraphics[width=.5\textwidth]{figure/MSD/NW700C20B.png}}
-\subfloat[$N_{\text{active}}=25$ \label{fig:NW700C25B}]
-{\includegraphics[width=.5\textwidth]{figure/MSD/NW700C25B.png}}
-\caption{MSD for the active particles as a function of obstacle weight. An 
-expected result where the MSD is lower when the obstacle weight is high. Since 
-it is harder for the active particles to push heavy obstacles, they will then 
-move less and this will lead to them having lower MSD. This same trend can be observed 
-with different number of active particles in $\textbf{(a)}$, $\textbf{(b)}$, $\textbf{(c)}$ and $\textbf{(d)}$} 
-\label{fig:msd_NW}
+    \centering
+    \includegraphics[width=.8\textwidth]{figure/MSD/NW_msd.pdf}
+    \caption{MSD for the active particles as a function of obstacle weight. An 
+    expected result where the MSD is lower when the obstacle weight is high. Since 
+    it is harder for the active particles to push heavy obstacles, they will then 
+    move less and this will lead to them having lower MSD. This same trend can be observed 
+    with different number of active particles with $N_{\text{active}}=10$ in $\textbf{(a)}$, 
+    $N_{\text{active}}=15$ in $\textbf{(b)}$, $N_{\text{active}}=20$ in $\textbf{(c)}$ and 
+    $N_{\text{active}}=25$ in $\textbf{(d)}$.} 
+    \label{fig:msd_NW}
 \end{figure}
 
 This shows that while keeping the number of obstacles and number of bugs fixed, the 
 MSD is lower for the cases with high obstacle weight, this result was expected 
 since it is harder for the bugs to push heavier obstacles which will resulting in them 
-having lower speed throughout the experiment. The weight of the obstacles is a parameter that is suppose to 
-mimic the noise parameter in \cite{nilsson2017metastable} and to compare the result 
-from this paper we can see in \cref{fig:simon_msd} that the curves is higher for the 
-cases with low noise level $(\eta)$, similar with the experimental result in \cref{fig:msd_NW}.
+having lower speed throughout the experiment. The weight of the obstacles is a parameter 
+that is suppose to mimic the orientational noise parameter in \cite{nilsson2017metastable} and to 
+compare the result from this paper we can see in \cref{fig:simon_msd} that the 
+curves is higher for the cases with low noise level $(\eta)$, similar with the 
+experimental result in \cref{fig:msd_NW}. In the simulation from \citeauthor{nilsson2017metastable}, 
+the active particles MSD transition from a superdiffusive motion at small times 
+($\text{MSD}\propto\tau^{\alpha}$, $\alpha>1$ for small $\tau$), to diffusive motion at long times 
+($\text{MSD}\propto\tau^{\alpha}$, $\alpha\leq1$ for large $\tau$). This similar behavior can also 
+be observed in the experiment in \cref{fig:msd_NW} where, for small times the exponent $\alpha>1$ which 
+suggest superdiffusion and $\alpha\leq1$ for large times suggesting diffusiv motions.
+
 
 For the last case of studying MSD as a function of obstacles density, the result is shown in 
 \cref{fig:msd_NC}.
 
-%\begin{figure}[htpb]
-%    \centering
-%    \captionsetup{justification=centering,margin=2cm}
-%    \includegraphics[width=.7\textwidth]{figure/MSD/MSD_ACTIVE_1WNC25B.png}
-%    \caption{Here varying the obstacle density, the MSD for 25 active particles with each 
-%    curve corresponding to different obstacle density, and all 
-%    obstacles weigh $\SI{7e-3}{kg}$ each. The stage gets more crowded as the number of 
-%    obstacles increases resulting in lower MSD for the active particles.}
-%    \label{fig:msd_active_1WNC25B}
-%\end{figure}
-
-
 \begin{figure}[htbp]
-\centering
-%\captionsetup{justification=centering,margin=2cm}
-\subfloat[$N_{\text{passive}}=\SI{2e-3}{kg}$ \label{fig:0WNC5B}]
-{\includegraphics[width=.5\textwidth]{figure/MSD/0WNC5B.png}}
-\subfloat[$N_{\text{passive}}=\SI{7e-3}{kg}$ \label{fig:1WNC10B}]
-{\includegraphics[width=.5\textwidth]{figure/MSD/1WNC10B.png}}\\
-\subfloat[$N_{\text{passive}}=\SI{12e-3}{kg}$ \label{fig:2WNC10B}]
-{\includegraphics[width=.5\textwidth]{figure/MSD/2WNC10B.png}}
-\subfloat[$N_{\text{passive}}=\SI{17e-3}{kg}$ \label{fig:3WNC10B}]
-{\includegraphics[width=.5\textwidth]{figure/MSD/3WNC10B.png}}
-\caption{Here varying the obstacle density the MSD decreases when the obstacle density increases. 
-Another expected result where the active particles have lesser space to move when the arena is 
-filled with more obstacles. When the arena is packed with the number of obstacles as high as 
-1000-1300 obstacles, the active particles will be significantly hindered and unable to move 
-from their starting position, this leads to them having MSD close to zero throughout time $\tau$, 
-see red and purple line in $\textbf{(b)}$, $\textbf{(c)}$ and $\textbf{(d)}$.} 
-\label{fig:msd_NC}
+    \centering
+    \includegraphics[width=.8\textwidth]{figure/MSD/NC_msd.pdf}
+    \caption{Here varying the obstacle density the MSD decreases when the obstacle density increases. 
+    Another expected result where the active particles have lesser space to move when the arena is 
+    filled with more obstacles. When the arena is packed with the number of obstacles as high as 
+    1000-1300 obstacles, the active particles will be significantly hindered and unable to move 
+    from their starting position, this leads to them having MSD close to zero throughout time $\tau$. 
+    The different figures show MSD as a function of obstacle density at different obstacle weight, 
+    with $m_{\text{passive}}=\SI{2e-3}{kg}$ in $\textbf{(a)}$, 
+    $m_{\text{passive}}=\SI{7e-3}{kg}$ in $\textbf{(b)}$, 
+    $m_{\text{passive}}=\SI{12e-3}{kg}$ in $\textbf{(c)}$, 
+    and $m_{\text{passive}}=\SI{17e-3}{kg}$ in $\textbf{(d)}$.} 
+    \label{fig:msd_NC}
 \end{figure}
 
 Here calculating the MSD of the active particles as a function of 
@@ -161,37 +104,6 @@ the obstacle density, it shows that the MSD is higher for the cases with low obs
 decreases as we increase the number of obstacles in the experiment. An expected result 
 where less space is available for the active particles to move freely as the number 
 of obstacles increases and particle-to-obstacle collisions is more frequent.
-
-
-In the simulation done by \citeauthor{nilsson2017metastable} in \citetitle{nilsson2017metastable}, 
-the active particles was studied as a function of orientational noise parameter. The resulting 
-MSD using different noise level was shown in \cref{fig:simon_msd}, where the active particles 
-transitioned from a diffusive state at a high noise level, to a superdiffusive state when the 
-noise level is low. In the experiments here, the obstacle weight is the parameter that 
-can best imitate the noise parameter from the simulation, where high noise level corresponds 
-to high obstacle weight, and as seen already, the heavier 
-the obstacles are, the lower is the MSD. We can visualize this result in terms of diffusion 
-by plotting in loglog scale and do a linear regression shown in \cref{fig:msd_NW1100C15B_log}.
-
-
-\begin{figure}[htpb]
-    \centering
-    \captionsetup{justification=centering,margin=2cm}
-    \includegraphics[width=.7\textwidth]{figure/MSD/NW1100C15B_log.png}
-    \caption{Active particles MSD as a function of obstacle weight, now plotted in log space 
-	    and with linear regression line showing the slope $\alpha$ for different obstacle 
-	    weight cases. At this condition with 1100 obstacles and 15 active particles, 
-	    $\alpha>1$ for the two lightest obstacle weights blue and orange lines, which 
-	    suggest superdiffusion. For the green line we have normal diffusion with $\alpha=1$, 
-	    and subdiffusion for heaviest obstacle weight, red line, with $\alpha<1$.
-    }
-    \label{fig:msd_NW1100C15B_log}
-\end{figure}
-
-Similar to the result from \citeauthor{nilsson2017metastable}, \cref{fig:msd_NW1100C15B_log} shows that 
-the active particles transition from a diffusive state at a high obstacle weight(red line) with $\alpha\leq1$ where 
-MSD$(\tau)\propto\tau^{\alpha}$, to a superdiffusive state at a low obstacle weight(blue line) with $\alpha>1$. 
-
 
 \section{Velocity}
 To study how the weight of the obstacles affect the behavior of the active particles, 
@@ -202,8 +114,7 @@ of how the active particles velocity get affected by the weight of the obstacles
 
 \begin{figure}[htpb]
     \centering
-    \captionsetup{justification=centering,margin=2cm}
-    \includegraphics[width=.7\textwidth]{figure/velocity/NW/NW1200C25B.png}
+    \includegraphics[width=.8\textwidth]{figure/velocity/NW1200C25B_vel.pdf}
     \caption{Probability distribution of the active particles velocity depending on the 
     obstacle weight. All the four cases were done using 25 active 
     particles and 1200 obstacles, while the different obstacle weight cases has their 
@@ -247,12 +158,10 @@ of the obstacle weight, which is the active particles being hindered by the obst
 
 \begin{figure}[htbp]
 \centering
-%\captionsetup{justification=centering,margin=2cm}
 \subfloat[$m_{\text{passive}}=\SI{2e-3}{kg}$\label{fig:0W1300C25B_0020}]
 {\includegraphics[width=.4\textwidth]{figure/velocity/snapshot/0W1300C25B_snapshot_0020_ipe.PNG}}\quad
 \subfloat[$m_{\text{passive}}=\SI{17e-3}{kg}$\label{fig:3W1300C25B_0020}] 
 {\includegraphics[width=.4\textwidth]{figure/velocity/snapshot/3W1300C25B_snapshot_0020_ipe.PNG}}
-
 \caption{Snapshot of two experiments both at $\unit[20]{s}$. Both experiments 
 was done using 25 active particles and with 1300 obstacles wherein \textbf{(a)} the obstacle 
 weigh is $m_{\text{passive}}=\SI{2e-3}{kg}$ each, and in 
@@ -278,184 +187,110 @@ bugs is lower, will there be more noticeable differences between the different o
 probability distributions of 4 different packing densities with 100, 400, 700, 1000 obstacles.
 
 \begin{figure}[htbp]
-\centering
-%\captionsetup{justification=centering,margin=2cm}
-\subfloat[100 obstacles\label{fig:velkde_NW100C10B}]
-{\includegraphics[width=.5\textwidth]{figure/velocity/NW/NW100C10B.png}}
-\subfloat[400 obstacles\label{fig:velkde_NW400C10B}]
-{\includegraphics[width=.5\textwidth]{figure/velocity/NW/NW400C10B.png}}\\
-\subfloat[700 obstacles\label{fig:velkde_NW700C10B}]
-{\includegraphics[width=.5\textwidth]{figure/velocity/NW/NW700C10B.png}}
-\subfloat[1000 obstacles\label{fig:velkde_NW1000C10B}]
-{\includegraphics[width=.5\textwidth]{figure/velocity/NW/NW1000C10B.png}}
-\caption{Probability distributions of the active particles velocity at 4 different obstacle density. 
-Each figure has 4 distributions corresponding to the different obstacle weight while the number of active particles is fixed to 10. 
-At a high obstacle density case in \textbf{(d)}, the probability $p(v>0)$ for heavier obstacle cases (red, green and orange) is close to zero. 
-The lightest obstacle weight case in blue has its distribution peak significantly lower than the other cases and with a fatter tail, this 
-suggest the situation shown \cref{fig:snapshot_0020} where the active particle are able to move more at this obstacle weight. 
-In \textbf{(c)} show clearly how the different obstacle weight affect the active particles velocity where, the distribution becomes 
-narrower and shift towards zero velocity as the obstacles becomes heavier.} 
-\label{fig:velkde_NWNC10B}
+    \centering
+    \includegraphics[width=.8\textwidth]{figure/velocity/NW_vel.pdf}
+    \caption{Probability distributions of the active particles velocity at 
+    4 different obstacle density. Each figure has 4 distributions 
+    corresponding to the different obstacle weight while the number 
+    of active particles is fixed to 10. At a high obstacle density 
+    case in \textbf{(d)}, the probability $p(v>0)$ for heavier obstacle 
+    cases (red, green and orange) is close to zero. The lightest obstacle 
+    weight case in blue has its distribution peak significantly lower than 
+    the other cases and with a fatter tail, this suggest the situation 
+    shown \cref{fig:snapshot_0020} where the active particle are able to 
+    move more at this obstacle weight. In \textbf{(c)} show clearly how 
+    the different obstacle weight affect the active particles velocity where, 
+    the distribution becomes narrower and shift towards zero velocity as the 
+    obstacles becomes heavier.} 
+    \label{fig:velkde_NWNC10B}
 \end{figure}
 
-The clearest case that shows how the weight of the obstacles affect the velocities of the active particles is 
-the case of 700 obstacles in \cref{fig:velkde_NW700C10B}. Here the distribution shift to the left and gets narrower as the 
-obstacle weight increases, with $\SI{17e-3}{kg}$(red) having highest peak at $v\approx\SI{0}{\metre\per\second}$, followed by $\SI{12e-3}{kg}$(green), 
-$\SI{7e-3}{kg}$(orange) and $\SI{2e-3}{kg}$(blue). This result show how the active particles is being slowed down 
-depending on the obstacle weight, where their velocity is lower in an environment of heavier obstacles. 
+% \begin{figure}[htbp]
+% \centering
+% %\captionsetup{justification=centering,margin=2cm}
+% \subfloat[100 obstacles\label{fig:velkde_NW100C10B}]
+% {\includegraphics[width=.5\textwidth]{figure/velocity/NW/NW100C10B.png}}
+% \subfloat[400 obstacles\label{fig:velkde_NW400C10B}]
+% {\includegraphics[width=.5\textwidth]{figure/velocity/NW/NW400C10B.png}}\\
+% \subfloat[700 obstacles\label{fig:velkde_NW700C10B}]
+% {\includegraphics[width=.5\textwidth]{figure/velocity/NW/NW700C10B.png}}
+% \subfloat[1000 obstacles\label{fig:velkde_NW1000C10B}]
+% {\includegraphics[width=.5\textwidth]{figure/velocity/NW/NW1000C10B.png}}
+% \caption{Probability distributions of the active particles velocity at 4 different obstacle density. 
+% Each figure has 4 distributions corresponding to the different obstacle weight while the number of active particles is fixed to 10. 
+% At a high obstacle density case in \textbf{(d)}, the probability $p(v>0)$ for heavier obstacle cases (red, green and orange) is close to zero. 
+% The lightest obstacle weight case in blue has its distribution peak significantly lower than the other cases and with a fatter tail, this 
+% suggest the situation shown \cref{fig:snapshot_0020} where the active particle are able to move more at this obstacle weight. 
+% In \textbf{(c)} show clearly how the different obstacle weight affect the active particles velocity where, the distribution becomes 
+% narrower and shift towards zero velocity as the obstacles becomes heavier.} 
+% \label{fig:velkde_NWNC10B}
+% \end{figure}
 
-%t99Here all the cases with different obstacle weights 
-%shows a peak around $v\approx\SI{0}{\metre\per\second}$, while the peak is higher and narrower for the case of high obstacle 
-%weight suggesting less movement of the active particles in an environment of heavy obstacles. For the rest of the cases 
-%with $m_{\text{passive}}=\SI{12e-3}{kg}$, $m_{\text{passive}}=\SI{7e-3}{kg}$ and $m_{\text{passive}}=\SI{2e-3}{kg}$, they all have highest
-%probability of having low velocity, but this probability gets lower as the obstacle weight decreases, see \cref{fig:velhist_NW1100C25B_2}. 
-%Lets instead look at the overall shape of the velocity distribution $p(v)$ for the cases with lower obstacle density in 
-%\cref{fig:velhist_NW600C25B,fig:velhist_NW400C25B,fig:velhist_NW100C25B}.
+The clearest case that shows how the weight of the obstacles affect the 
+velocities of the active particles is the case of 700 obstacles in 
+\cref{fig:velkde_NWNC10B}\textbf{(c)}. Here the distribution shift to the left 
+and gets narrower as the obstacle weight increases, 
+with $\SI{17e-3}{kg}$(red) having highest peak at 
+$v\approx\SI{0}{\metre\per\second}$, followed by $\SI{12e-3}{kg}$(green), 
+$\SI{7e-3}{kg}$(orange) and $\SI{2e-3}{kg}$(blue). This result show how 
+the active particles is being slowed down depending on the obstacle weight, 
+where their velocity is lower in an environment of heavier obstacles. 
 
-At lower obstacle densities cases in \cref{fig:velkde_NW100C10B,fig:velkde_NW400C10B} the range of allowed 
-velocities that the bugs can take seems to be larger i.e. there is nonzero probability for higher velocity, 
-and there is high probability around $v\approx\SI{0.2}{\metre\per\second}$. 
-For these cases(\cref{fig:velkde_NW100C10B,fig:velkde_NW400C10B}) the overall qualitative behavior of the active 
-particles is barely affected by the different obstacle weights, since the interactions between 
+At lower obstacle densities cases in \cref{fig:velkde_NWNC10B}\textbf{(a)} and 
+\textbf{(b)} the range of allowed velocities 
+that the bugs can take seems to be larger i.e. there is nonzero 
+probability for higher velocity, and there is high probability 
+around $v\approx\SI{0.2}{\metre\per\second}$. For these cases 
+(\cref{fig:velkde_NWNC10B}\textbf{(a)} and \textbf{(b)}) the overall 
+qualitative behavior of the active particles is barely affected 
+by the different obstacle weights, since the interactions between 
 the passive- and active particles are minimal when the packing density is low. 
 
-So an observation that can be made from the results in \cref{fig:velkde_NWNC10B} is that when the packing density 
-is too low, there is no clear pattern of how the different obstacle weights effect the velocities of the 
-active particles. The threshold of ''too low'' packing density is found to be about less than \num{500} obstacles. 
-On the other hand, when having high packing density where $N_{\text{passive}}\gg N_{\text{active}}$, the different obstacle weights doesn't have a 
-significant effect on the active particles, since at a high packing density, e.g. more than \num{1200} obstacles, 
-regardless of the obstacle weight, the movement of the active particles will be minimal leaving their 
+So an observation that can be made from the results in 
+\cref{fig:velkde_NWNC10B} is that when the packing density 
+is too low, there is no clear pattern of how the different 
+obstacle weights effect the velocities of the active particles. 
+The threshold of ''too low'' packing density is found to be 
+about less than \num{500} obstacles. On the other hand, 
+when having high packing density where 
+$N_{\text{passive}}\gg N_{\text{active}}$, the different 
+obstacle weights doesn't have a significant effect on the 
+active particles, since at a high packing density, e.g. 
+more than \num{1200} obstacles, regardless of the obstacle weight, 
+the movement of the active particles will be minimal leaving their 
 average velocity close to zero, as shown in \cref{fig:mean_velocity}
 
-
-\begin{figure}[htpb!]
+\begin{figure}[htpb]
     \centering
-    %\captionsetup{justification=centering,margin=2cm}
-    \subfloat[average velocity\label{fig:mean_velocity_obstacles}]
-    {\includegraphics[width=.5\textwidth]{figure/velocity/NW/mean_vel.png}}
-    \subfloat[velocity distribution\label{fig:velkde_NW1200C25B_mean}]
-    {\includegraphics[width=.5\textwidth]{figure/velocity/NW/NW1200C25B.png}}
-    \caption{To the left in \textbf{(a)}, the average velocity of the active particles as a function of the obstacle density shows 
-	    how the average velocity of the active particles decreases as the number of obstacle increases. The 
-	    different line correspond to different obstacle weight. The average velocity decreases fastest for the 
-	    heavier obstacles and the lines for $m_{\text{passive}}=\SI{17e-3}{kg}$(red), 
-	    $m_{\text{passive}}=\SI{12e-3}{kg}$(green), $m_{\text{passive}}=\SI{7e-3}{kg}$(orange) converges at 
-	    \num{1200} obstacles, while $m_{\text{passive}}=\SI{2e-3}{kg}$(blue) stays at a higher average velocity. 
-	    The fact that the blue line doesn't converge with the other lines can also be visualized in \textbf{(b)} 
-	    where the lightest obstacle case(blue) has its distribution peak much lower and also has a fatter tail, at this 
-	    high packing density.
-    }
+    \includegraphics[width=.8\textwidth]{figure/velocity/mixed_vel.pdf}
+    \caption{To the left in \textbf{(a)}, the average velocity of 
+    the active particles as a function of the obstacle density shows 
+    how the average velocity of the active particles decreases as the 
+    number of obstacle increases. The different line correspond to different 
+    obstacle weight. The average velocity decreases fastest for the heavier 
+    obstacles and the lines for $m_{\text{passive}}=\SI{17e-3}{kg}$(red), 
+    $m_{\text{passive}}=\SI{12e-3}{kg}$(green), $m_{\text{passive}}=\SI{7e-3}{kg}$(orange) 
+    converges at \num{1200} obstacles, while $m_{\text{passive}}=\SI{2e-3}{kg}$(blue) 
+    stays at a higher average velocity. The fact that the blue line doesn't converge 
+    with the other lines can also be visualized in \textbf{(b)} where the lightest obstacle 
+    case(blue) has its distribution peak much lower and also has a fatter tail, at this 
+    high packing density.}
     \label{fig:mean_velocity}
 \end{figure}
 
-As can be seen in \cref{fig:mean_velocity_obstacles} the active particles average velocity decreases as the number 
-of obstacles increases. How fast this velocity decreases does depend on the obstacles weight where heavier obstacles 
-leads to fastest decrease in velocity, see \cref{fig:mean_velocity_obstacles}. At a high packing density at about 
-\num{1200} obstacles and higher, the lines corresponding to the three heaviest obstacle weights, red, green and orange, 
-converges at the same low velocity. The blue line corresponding to the lightest obstacle weight stays at a higher velocity 
-which suggest the scenario mentioned in \cref{fig:snapshot_0020}. 
-
-%99when $N_{\text{obstacles}}\lesssim500$ obstacles, here the mean 
-%velocity of the active particles corresponding to different obstacle weight doesn't follow any 
-%particular pattern. However when $500\lesssim N_{\text{obstacles}}\lesssim1100$, a pattern emerges where the mean velocity 
-%is higher for the case of lower obstacle weight. And when $N_{\text{obstacles}}\gtrsim1100$ the 
-%mean velocity for different cases seems to converge to a low value close to zero. Shown in \cref{fig:velkde_NW1200C25B} 
-%is the case with highest obstacle density of 1300 obstacles, where the velocity distribution of the active particles takes 
-%similar shape, peaking at zero velocity, independent of the obstacle weight. To generalize this behaviour
-
-%\begin{align}
-%    \begin{array}{lr}
-%        \langle\bm{v}_{\unit[2]{g}}\rangle\approx
-%        \langle\bm{v}_{\unit[7]{g}}\rangle\approx
-%        \langle\bm{v}_{\unit[12]{g}}\rangle\approx
-%        \langle\bm{v}_{\unit[17]{g}}\rangle\approx v_{\text{max}}, & \text{for } N_{\text{obstacles}}\lesssim L\\
-%        v_{\text{max}}>
-%        \langle\bm{v}_{\unit[2]{g}}\rangle>
-%        \langle\bm{v}_{\unit[7]{g}}\rangle>
-%        \langle\bm{v}_{\unit[12]{g}}\rangle>
-%        \langle\bm{v}_{\unit[17]{g}}\rangle>
-%        0, & \text{for } L\lesssim N_{\text{obstacles}}\lesssim U\\ 
-%        \langle\bm{v}_{\unit[2]{g}}\rangle\approx
-%        \langle\bm{v}_{\unit[7]{g}}\rangle\approx
-%        \langle\bm{v}_{\unit[12]{g}}\rangle\approx
-%        \langle\bm{v}_{\unit[17]{g}}\rangle\approx 0, & \text{for } N_{\text{obstacles}}\gtrsim U
-%    \end{array}
-%    \label{eq:mean_velocity_boundary}
-%\end{align}
-
-%where $L$ and $U$ are lower and upper boundary of the number of obstacles to which the 
-%character of the mean velocity changes. The velocity $v_{\text{max}}$ is the velocity 
-%that the active particles have when moving freely without obstacles, $N_{\text{obstacles}}$ 
-%is the number of obstacles and $\langle\bm{v}\rangle$ is an average done over number 
-%of frames and number of active particles and the subscripts $\SI{2}{g}$, $\SI{7}{g}$, 
-%$\SI{12}{g}$ and $\SI{17}{g}$ correspond to the obstacle weight. See \cref{theory_velocity} to see how the velocity 
-%is calculated and how the average is done. The specific values for the lower boundary $L$ and 
-%the upper boundary $U$ do depend on the number of active particles that were used. 
-%In the specific case of 15 active particles in \cref{fig:mean_velocity_obstacles_15B}, the 
-%boundaries are $L\approx500$ and $U\approx1100$ obstacles. The boundaries for the different number of 
-%active particles is shown in \cref{tab:LU} and \cref{fig:LU}.
-
-%\begin{table}[H]
-%\centering
-%\caption{This table shows how the lower boundary $L$ and upper boundary 
-%$U$, measured in number of obstacles, changes with the number of active 
-%particles $N_{\text{active}}$. When $N_{\text{obstacles}}\gtrsim U$ and $N_{\text{obstacles}}\lesssim L$, 
-%the average velocity of the active particles shows no particular pattern relating to 
-%the obstacle weight. A pattern emerges when $L\lesssim N_{\text{obstacles}}\lesssim U$ showing a trend where the average velocity 
-%being lower for the higher obstacle weight cases, and higher velocity when the obstacle weight is low. 
-%These boundaries $U$ and $L$ seem to change with the number of active 
-%particles as shown here.}
-%\begin{tabular}{ccc} 
-%\toprule
-%$N_{\text{active}}$     &   $L$     &       $U$    \\
-%\midrule
-%1                       &   400     &       800     \\
-%2                       &   400     &       900     \\
-%5                       &   400     &       900     \\
-%10                      &   500     &       1100    \\
-%15                      &   500     &       1100    \\
-%20                      &   500     &       1200    \\
-%25                      &   600     &       1200    \\
-%\bottomrule
-%\end{tabular}
-%\label{tab:LU}
-%\end{table}
-
-%\begin{figure}[htp]
-%    \centering
-    %\captionsetup{justification=centering,margin=2cm}
-%    \includegraphics[width=.7\textwidth]{figure/LU.png}
-%    \caption{The upper boundary $U$ and lower boundary $L$ in number of obstacles as a function of the 
-%    number of active particles. Between these boundary e.g. $L\lesssim N_{\text{obstacles}}\lesssim U$, the 
-%    average velocity of the active particles shows a trend where they have higher velocity when the obstacle weight 
-%    is low, and lower velocity when the obstacle weight is high. These boundary changes with the number of active particles as shown here.}
-%    \label{fig:LU}
-%\end{figure}
-
-%Again the boundaries $L$ and $U$ show the number of obstacles to which 
-%the mean velocity of the active particles changes its behaviour. The 
-%lower boundary $L$ is a qualitative threshold measured in number of obstacles, 
-%where if the number of obstacles is lesser than this threshold the velocity 
-%of the active particles will not get noticeably affected by the 
-%different obstacle weights and the mean velocity of the active particles 
-%will be approximately the same for different obstacle weights. When $N_{\text{obstacles}}\lesssim L$ the area 
-%filled with obstacles is sparse and the interaction between active particles 
-%and obstacles is minimal and the weight of the obstacles do not have a significant effect on the active particles. 
-%As for the upper boundary $U$, when the number of obstacles is higher than 
-%this boundary, $N_{\text{obstacles}}\gtrsim U$, the arena is packed so dense with 
-%obstacles that the active particles will have a hard time to move and will 
-%have a mean velocity close to zero independent of the weight of the obstacles, see \cref{fig:velhist_NW1300C25B}.
-%Now the case of $L\lesssim N_{\text{obstacles}}\lesssim U$ when the number of obstacles 
-%is in a region between the lower and the upper boundary, this is where the mean 
-%velocity of the active particles follows a pattern where the mean velocity is higher 
-%for the case of low obstacle weight, and lower velocity for heavier obstacle weight, see 
-%\cref{fig:mean_velocity_obstacles_15B} where $L\approx500$ and $U\approx1100$.99 
-
-%One observation that can be made from \cref{tab:LU} and \cref{fig:LU} is that as the number of active particle 
-%increases, the lower and the upper boundary $L$ and $U$ seem to also increase. This observation 
-%seems to suggest that there is some optimal ratio for the number of active particles and the 
-%number of obstacles, which leads to a particle-obstacle interaction that is noticeably affected 
-%by the obstacle weight.
+As can be seen in \cref{fig:mean_velocity}\textbf{(a)} 
+the active particles average velocity decreases as the number 
+of obstacles increases. How fast this velocity decreases does 
+depend on the obstacles weight where heavier obstacles 
+leads to fastest decrease in velocity, see \cref{fig:mean_velocity}\textbf{(a)}. 
+At a high packing density at about \num{1200} obstacles and higher, 
+the lines corresponding to the three heaviest obstacle weights, 
+red, green and orange, converges at the same low velocity. 
+The blue line corresponding to the lightest obstacle weight stays at a higher velocity 
+which suggest the scenario mentioned in \cref{fig:snapshot_0020} where the 
+active particles, at this light obstacle weight of $m_{\text{passive}}=\SI{2e-3}{kg}$, 
+are able to form small channels and move through them for a short period of time, 
+eventhough the packing density is as high as \num{1200} obstacles.
 
 Previously, the results show that when having the number of active particles fixed, 
 the mean velocity for these active particles decrease towards zero as the number of 
@@ -467,74 +302,46 @@ A question that needs to be answered is how does the number of active particles
 affect their mean velocity? Lets answer this by looking at the case where 
 the obstacle weight is $m_{\text{passive}}=\SI{7e-3}{kg}$, as shown in \cref{fig:velkde_1WNCNB}.
 
-
-\begin{figure}[htbp!]
-\centering
-%\captionsetup{justification=centering,margin=2cm}
-\subfloat[$N_{\text{passive}}=100$\label{fig:velkde_1W100CNB}]
-{\includegraphics[width=.5\textwidth]{figure/velocity/NB/1W100CNB.png}}
-\subfloat[$N_{\text{passive}}=1300$\label{fig:velkde_1W1300CNB}]
-{\includegraphics[width=.5\textwidth]{figure/velocity/NB/1W1300CNB.png}}
-\caption{Probability distributions of the active particles velocity at two different obstacle density. 
-	At low obstacle density in \textbf{(a)} the distribution peaks at a lower velocity for the higher 
-	number of bugs, while at high obstacle density in \textbf{(b)} the different distribution peaks at 
-	a low velocity close to zero.
-} 
-\label{fig:velkde_1WNCNB}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.8\textwidth]{figure/velocity/NB_vel.pdf}
+    \caption{Probability distributions of the active particles 
+    velocity at two different obstacle density. At low obstacle 
+    density in \textbf{(a)} the distribution peaks at a lower 
+    velocity for the higher number of bugs, while at high obstacle 
+    density in \textbf{(b)} all the different distribution peaks at 
+    a low velocity close to zero.} 
+    \label{fig:velkde_1WNCNB}
 \end{figure}
 
+As pointed out earlier, the active particles velocity decreases as 
+the number of obstacles increases. This again can be seen in 
+\cref{fig:velkde_1WNCNB} where the peaks of the velocity 
+distributions shifts towards $v=0$ as the number of obstacles 
+increases from $N_{\text{passive}}=100$, in \cref{fig:velkde_1WNCNB}\textbf{(a)}, to 
+$N_{\text{passive}}=1300$, in \cref{fig:velkde_1WNCNB}\textbf{(b)}.
 
-%\begin{figure}[htbp!]
-%\centering
-%%\captionsetup{justification=centering,margin=2cm}
-%\subfloat[$N_{\text{passive}}=100$\label{fig:velhist_0W100CNB}]
-%{\includegraphics[width=.5\textwidth]{figure/velocity/0W(4C)NB/velhist_0W100CNB_dens.png}}
-%\subfloat[$N_{\text{passive}}=300$\label{fig:velhist_0W300CNB}]
-%{\includegraphics[width=.5\textwidth]{figure/velocity/0W(4C)NB/velhist_0W300CNB_dens.png}}\\
-%\subfloat[$N_{\text{passive}}=800$\label{fig:velhist_0W800CNB}]
-%{\includegraphics[width=.5\textwidth]{figure/velocity/0W(4C)NB/velhist_0W800CNB_dens.png}}
-%\subfloat[$N_{\text{passive}}=1200$\label{fig:velhist_0W1200CNB}]
-%{\includegraphics[width=.5\textwidth]{figure/velocity/0W(4C)NB/velhist_0W1200CNB_dens.png}}
-%\caption{Probability distributions of the active particles velocity at four different obstacle density. Each 
-%figure shows how the velocity distribution depend on the number of active particles. There is an overall trend 
-%where the peaks of the distributions shift to the left as the obstacle density increases from 100 obstacles to 
-%1200 obstacles. This shift of the distribution peak happens fastest for the case of $N_{\text{active}}=25$, see 
-%\textbf{(c)}(blue line), and follows by the other cases in the order of high to low number of active particles.} 
-%\label{fig:4velhist_0W}
-%\end{figure}
+When having a closer look at how the number of 
+active particles is affecting the behavior, 
+such as the case with low obstacle density in 
+\cref{fig:velkde_1WNCNB}\textbf{(a)} with 
+$N_{\text{passive}}=100$, there is a clear separation 
+between the different velocity distributions where the 
+distribution for higher number of active particles peaks 
+at a lower velocity(red), and the distributions shifts 
+towards higher velocity as the number of active particles decreases(blue).
+This result shows that the probability of having a lower 
+ensemble velocity is higher when the number of active particles is high.
 
-As pointed out earlier, the active particles velocity decreases as the number of obstacles increases. This 
-again can be seen in \cref{fig:velkde_1WNCNB} where the peaks of the velocity distributions shifts towards $v=0$ 
-as the number of obstacles increases from $N_{\text{passive}}=100$, in \cref{fig:velkde_1W100CNB}, to 
-$N_{\text{passive}}=1300$, in \cref{fig:velkde_1W1300CNB}.
-
-When having a closer look at how the number of active particles is affecting the behavior, such as the case with 
-low obstacle density in \cref{fig:velkde_1W100CNB} with $N_{\text{passive}}=100$, there is a clear separation 
-between the different velocity distributions where the distribution for higher number of active particles peaks 
-at a lower velocity(red), and the distributions shifts towards higher velocity as the number of active particles decreases(blue).
-This result shows that the probability of having a lower ensemble velocity is higher when the number of active particles 
-is high.
-
-%99there are clear velocity distribution peaks for the low number active particles cases, 
-%$N_{\text{active}}=1$(red) and $N_{\text{active}}=5$(green) at velocity $v=\SI{2e-4}{\metre\per\second}$ respective $v=\SI{2.5e-3}{\metre\per\second}$, as seen in \cref{fig:velhist_0W100CNB}. With cases of high number active particles, 
-%$N_{\text{active}}=15$(orange) and $N_{\text{active}}=25$(blue), there velocity distribution peaks are comparatively 
-%lower, around this nonzero velocity, than the two other cases of low number active particles. Now looking at $v\approx\SI{0}{\metre\per\second}$ 
-%again in \cref{fig:velhist_0W100CNB}, the case with $N_{\text{active}}=25$(blue) shows highest density peak close to zero velocity i.e.
-%the probability is higher for the active particles to have low velocity when the number of active particles is high.
-
-
-%When the packing density increases as in \cref{fig:velhist_0W300CNB,fig:velhist_0W800CNB}, with 
-%$N_{\text{passive}}=300$ and $N_{\text{passive}}=800$, some sort of pattern emerges. The velocity distributions 
-%shift to the left towards $v=\SI{0}{\metre\per\second}$ with $N_{\text{active}}=25$(blue line) leading, followed 
-%by the other cases in the order of decreasing number of active particles, as seen in \cref{fig:velhist_0W800CNB}.
-%This particular result shown in \cref{fig:velhist_0W800CNB}, differentiate all the four cases of different number 
-%of active particles showing that the probability of having a high velocity do decrease as the number of active particles increase.
-
-This suggest some sort of crowdedness where the large amount of active particles hinders each 
-other from moving by creating some sort of congestion, see an example in \cref{fig:0W300C25B_congestion}. 
-As the number of obstacles increases further as in \cref{fig:velkde_1W1300CNB}, 
-all the distributions peaks at a velocity close to zero, regardless of the number of active particles. Similar to this result 
-has been seen before in \cref{fig:mean_velocity_obstacles} where the velocities of the active particles converge towards zero, 
+This suggest some sort of crowdedness where the large 
+amount of active particles hinders each other from moving 
+by creating some sort of congestion, see an example in 
+\cref{fig:0W300C25B_congestion}. As the number of obstacles 
+increases further as in \cref{fig:velkde_1WNCNB}\textbf{(b)}, 
+all the distributions peaks at a velocity close to zero, 
+regardless of the number of active particles. Similar to this result 
+has been seen before in \cref{fig:mean_velocity} 
+where the velocities of the active particles converge towards zero, 
 independent of the obstacle weight, as the packing density increases.    
 
 
@@ -663,7 +470,7 @@ We confirm this with \cref{fig:velkde_1WNC10B}
 
 \begin{figure}[htpb]
     \centering
-    \captionsetup{justification=centering,margin=2cm}
+    %\captionsetup{justification=centering,margin=2cm}
     \includegraphics[width=.7\textwidth]{figure/velocity/NC/1WNC10B.png}
     \caption{Active particles probability distribution as a function of obstacle density. 
 	    The distribution shift to the left towards $v=0$ as the the number of obstacles increases, 

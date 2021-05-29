@@ -182,25 +182,36 @@ def msd_individual(dataPath):
     ax.set_yscale('log')
     plt.show()
 
-def msd_ensemble(dataPath, N):
+def msd_ensemble():
     #lst = ['C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W800C20B.h5', 
     #'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W900C20B.h5', 
     #'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data_old/C20B838P0M.h5']
     #listOfFiles = lst
-    
+    N = 1
+    l1 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W*C10B*'
+    l2 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/1W*C10B*'
+    l3 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/2W*C10B*'
+    l4 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/3W*C10B*'
+    l = [l1, l2, l3, l4]
+    axlabel = ['(a)', '(b)', '(c)', '(d)'] 
+
     mpp = 0.89/1266
     fps = 30            #yeah fps = 1
     max_lagtime = 500    # frames
 
-    listOfFiles = glob.glob(dataPath)
-    listOfFiles = natsorted(listOfFiles)
-    listOfFiles = listOfFiles[::3]
-    
-
     pl.update_settings(usetex=True)
-    fig, axs = pl.create_fig(ncols=1, nrows=1, height=1.65)
+    fig, axs = pl.create_fig(ncols=2, nrows=2, height=1.65)
     
     for i, ax in enumerate(fig.axes):
+        listOfFiles = glob.glob(l[i])
+        listOfFiles = natsorted(listOfFiles)
+        listOfFiles = listOfFiles[::4] 
+        slope_short = np.zeros(len(listOfFiles))
+        slope_long = np.zeros(len(listOfFiles))
+        A_short = np.zeros(len(listOfFiles))
+        A_long = np.zeros(len(listOfFiles))
+
+
         for ifile, file in enumerate(listOfFiles[:]):
             fileName = ntpath.basename(file)
             expName = fileName.split('.')[0]
@@ -247,30 +258,58 @@ def msd_ensemble(dataPath, N):
             else:
                 trajs = tp.filter_stubs(trajs, 10)  #  10
                 trajs = trajs[(trajs['mass'] > 4500)] # 4500
-
-            
            
             em = tp.emsd(trajs, mpp, fps, max_lagtime=max_lagtime)
             p = ax.plot(em.index, em, 'o', label=label, markersize=5)
             #p = ax.plot(em.index, em/em.index, 'o', label=label)
 
-            n = tp.utils.fit_powerlaw(em, plot=False).n.msd
-            A = tp.utils.fit_powerlaw(em, plot=False).A.msd
+            t = 20
+            n = tp.utils.fit_powerlaw(em.iloc[0:t], plot=False).n.msd
+            A = tp.utils.fit_powerlaw(em.iloc[0:t], plot=False).A.msd
+            slope_short[ifile] = n
+            A_short[ifile] = A
 
-        ax.set_title(title)
+       
+            n = tp.utils.fit_powerlaw(em.iloc[t:-1], plot=False).n.msd
+            A = tp.utils.fit_powerlaw(em.iloc[t:-1], plot=False).A.msd
+            slope_long[ifile] = n
+            A_long[ifile] = A
+            
+
+      
+        A_s = np.max(A_short)
+        n_s = np.max(slope_short)
+        x1 = em.index[1:7]
+        y1 = 2*A_s*em.index[1:7]**n_s 
+        ax.plot(x1, y1, 'k--', linewidth=1)
+        ax.text(x1.values[2]*0.5, y1.values[2]*1.2, 
+            r'$\propto\tau^{{{:.2f}}}$'.format(n_s), rotation=0)
+        
+
+        A_l = np.nanmin(A_long)
+        n_l = np.nanmin(slope_long)
+        x2 = em.index[100:400]
+        y2 = 0.8*A_l*em.index[100:400]**n_l
+        ax.plot(x2, y2, 'k--', linewidth=1)
+        ax.text(x2.values[200]*0.5, y2.values[200]*0.2, 
+            r'$\propto\tau^{{{:.2f}}}$'.format(n_l), rotation=0)
+        #print(x2.values[200]*0.5, y2.values[200]*0.2)
+        #print(em.index)
+        
+            
+
+        #ax.set_title(title)
         ax.set_xscale('log')
         ax.set_yscale('log')
         ax.set_xlabel(r'lagtime $\tau$ [s]')
         ax.set_ylabel(r'MSD($\tau$) [$m^2$]')
         #ax.set_ylabel(r'MSD($\tau$)/$\tau$ [$m^2$]')
-
-    
-    
-    #outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/msd_plots/msd.png'
-    #plt.subplots_adjust(hspace = .01)
-    #plt.savefig(outpath, bbox_inches='tight', dpi=1000, pad_inches=0.0)
-    plt.legend(loc='upper left', prop={'size': 5})
-    plt.savefig(outpath, bbox_inches='tight')
+        ax.legend(loc='upper left', prop={'size': 5})
+        pl.add_label(ax, text=axlabel[i])
+        
+    outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/msd_plots/NC_msd.pdf'
+    pl.tight_layout(fig=fig)
+    plt.savefig(outpath)
     plt.show()
  
 def velocity_calc_save(dataPath):
@@ -337,21 +376,27 @@ def velocity_calc_save(dataPath):
 
         data.to_hdf(outputPathData, key='df', mode='w')
 
-def plot_velocity(velocityPath, N):
+def plot_velocity():
+    N = 0
+    l1 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/*W100C10B*'
+    l2 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/*W400C10B*'
+    l3 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/*W700C10B*'
+    l4 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/*W1000C10B*'
+    l = [l1, l2, l3, l4]
+    axlabel = ['(a)', '(b)', '(c)', '(d)'] 
+
     mpp = 0.89/1266
-    fps = 30            #yeah fps = 1
-    max_lagtime = 500    # frames
+    fps = 30            
 
-    listOfFiles = glob.glob(velocityPath)
-    listOfFiles = natsorted(listOfFiles)
-    listOfFiles = listOfFiles[::2]
-    
     pl.update_settings(usetex=True)
-    fig, axs = pl.create_fig(ncols=1, nrows=1, height=1.65)
-
-    d = {}
-    
+    fig, axs = pl.create_fig(ncols=2, nrows=2, height=1.65)    
     for i, ax in enumerate(fig.axes):
+
+        listOfFiles = glob.glob(l[i])
+        listOfFiles = natsorted(listOfFiles)
+        listOfFiles = listOfFiles[:] 
+        d = {}
+
         for ifile, file in enumerate(listOfFiles[:]):
             fileName = ntpath.basename(file)
             expName = fileName.split('.')[0]
@@ -369,6 +414,7 @@ def plot_velocity(velocityPath, N):
             bugLabel = r'$N_{active}=%d$' % (nbrActive)
 
             weightTitle = r'$N_{passive}=%d$ and $N_{active}=%d$' % (nbrObstacles, nbrActive)
+            weightTitle = r'$N_{passive}=%d$' % (nbrObstacles)
             weightLabel = r'$m_{passive}$=%d$\cdot10^{-3}$kg' % (nbrWeight * 5 + 2)
 
             obstaclesTitle = r'$m_{passive}=%d\cdot10^{-3}$kg and $N_{active}=%d$' % (nbrWeight * 5 + 2, nbrActive)
@@ -396,19 +442,22 @@ def plot_velocity(velocityPath, N):
             
         df = pd.DataFrame(d)
       
-        gfg = sns.kdeplot(data=df, fill=True, common_norm=True, palette="tab10",
-                alpha=.5, linewidth=0.2, cumulative=False, cut=0, ax=ax, legend=True)
+        sns.kdeplot(data=df, fill=True, common_norm=True, palette="tab10",
+                alpha=.5, linewidth=0.2, cumulative=False, cut=0, ax=ax)
 
         ax.set_title(title)
         ax.set_xlabel(r'v [m/s]')
+        ax.set_xlim([0, 0.6])
         ax.set_ylabel('Density')
-      
-    #plt.setp(gfg.get_legend().get_texts(), fontsize='2')
-    plt.xlabel(r'v [m/s]')
-    plt.xlim([0, 0.8])
-    plt.savefig(outpath, bbox_inches='tight')
+        #ax.legend(loc='upper right', prop={'size': 5})
+        pl.add_label(ax, text=axlabel[i])
+        
+    outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/velocity_plots/NW_vel.pdf'
+    pl.tight_layout(fig=fig)
+    plt.savefig(outpath)
+    #plt.legend(loc='upper right', prop={'size': 5})
     plt.show()
-    
+      
 def plot_orientation(velocityPath, N):
     listOfFiles = glob.glob(velocityPath)
     listOfFiles = natsorted(listOfFiles)
@@ -664,6 +713,133 @@ def plot_orientation_old(dataPath, N):
     plt.savefig(outpath, bbox_inches='tight')
     plt.show()
 
+def mixed_plots():
+    l1 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/1W*C10B*'
+    l2 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/1W1300C*'
+    
+    N1, N2 = 1, 2 
+
+    pl.update_settings(usetex=True)
+    fig, axs = pl.create_fig(ncols=1, nrows=1, height=1.65)
+    
+    plot_velocity_test(path=l1, N=N1, ax=axs)
+    #pl.add_label(axs, text='(a)')
+
+    #plot_velocity_test(path=l2, N=N2, ax=axs[1])
+    #pl.add_label(axs[1], text='(b)')
+        
+    outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/velocity_plots/NC_vel.pdf'
+    pl.tight_layout(fig=fig)
+    plt.savefig(outpath)
+    plt.show()
+
+def plot_mean_velocity_test(path, N, ax):
+    listOfFiles = glob.glob(path)
+    listOfFiles = natsorted(listOfFiles)
+    listOfFiles = listOfFiles[:]
+
+    if N == 0:
+        labels = [None]*len(listOfFiles)
+        labels=['2$\cdot10^{-3}$kg', '7$\cdot10^{-3}$kg', '12$\cdot10^{-3}$kg',
+                                             '17$\cdot10^{-3}$kg']
+    elif N == 1:
+        labels = [None]*len(listOfFiles)
+    elif N == 2:
+        labels = [None]*len(listOfFiles) 
+
+    mpp = 0.89 / 1266
+    fps = 30
+    
+    d = {'W': [], 'C': [], 'B': [], 'V': []}
+    
+    for ifile, file in enumerate(listOfFiles[:]):
+        fileName = ntpath.basename(file)
+        expName = fileName.split('.')[0]
+
+        nbrWeight = int(expName.split('W')[0])
+        nbrObstacles = int(expName.split('W')[1].split('C')[0])
+        nbrActive = int(expName.split('W')[1].split('C')[1].split('B')[0])
+
+        data = pd.read_hdf(file, 'df')
+
+        vel = np.sqrt(data.dx ** 2 + data.dy ** 2) * mpp * fps
+        vel = vel.values.tolist()
+
+        d['W'].append(nbrWeight)
+        d['C'].append(nbrObstacles)
+        d['B'].append(nbrActive)
+        d['V'].append(np.mean(vel))
+
+
+    df = pd.DataFrame(d)
+
+    g = sns.lineplot(data=df, x='C', y='V', hue='W', palette='bright', ax=ax)
+    ax.set_xlabel(r'$N_{passive}$')
+    ax.set_xlim([100, 1300])
+    ax.set_ylabel(r'$\langle v\rangle$ [m/s]')
+    ax.set_title('Mean velocity active particles')
+    g.legend(title=r'$m_{passive}$', labels=labels)
+
+def plot_velocity_test(path, N, ax):
+    mpp = 0.89/1266
+    fps = 30            
+
+    listOfFiles = glob.glob(path)
+    listOfFiles = natsorted(listOfFiles)
+    listOfFiles = listOfFiles[::2] 
+    d = {}
+    title = ''
+    for ifile, file in enumerate(listOfFiles[:]):
+        fileName = ntpath.basename(file)
+        expName = fileName.split('.')[0]
+        label = expName
+
+        nbrWeight = int(expName.split('W')[0])
+        nbrObstacles = int(expName.split('W')[1].split('C')[0])
+        nbrActive = int(expName.split('W')[1].split('C')[1].split('B')[0])
+
+        if nbrObstacles == 0:
+            bugTitle = r'$N_{passive}=%d$' % (nbrObstacles)
+        else:
+            bugTitle = r'$N_{passive}=%d$ and $m_{passive}=%d\cdot10^{-3}$kg' % (nbrObstacles, nbrWeight * 5 + 2)
+
+        bugLabel = r'$N_{active}=%d$' % (nbrActive)
+
+        weightTitle = r'$N_{passive}=%d$ and $N_{active}=%d$' % (nbrObstacles, nbrActive)
+        #weightTitle = r'$N_{passive}=%d$' % (nbrObstacles)
+        weightLabel = r'$m_{passive}$=%d$\cdot10^{-3}$kg' % (nbrWeight * 5 + 2)
+
+        obstaclesTitle = r'$m_{passive}=%d\cdot10^{-3}$kg and $N_{active}=%d$' % (nbrWeight * 5 + 2, nbrActive)
+        obstaclesLabel = r'$N_{passive}=%d$' % (nbrObstacles)
+
+        if N == 0:
+            title = weightTitle
+            label = weightLabel
+        elif N == 1:
+            title = obstaclesTitle
+            label = obstaclesLabel
+        elif N == 2:
+            title = bugTitle
+            label = bugLabel
+
+        data = pd.read_hdf(file, 'df')
+
+        vel = np.sqrt(data.dx**2 + data.dy**2)*mpp*fps
+        vel = vel.values.tolist()
+        d[label] = vel[:1500]
+       
+            
+    df = pd.DataFrame(d)
+    
+    sns.kdeplot(data=df, fill=True, common_norm=True, palette="tab10",
+            alpha=.5, linewidth=0.2, cumulative=False, cut=0, ax=ax)
+
+    ax.set_title(title)
+    ax.set_xlabel(r'v [m/s]')
+    ax.set_xlim([0, 0.8])
+    ax.set_ylabel('Density')
+
+
 dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/1W*C10B*'
 #imagePath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/image_sequences/1W1000C*'
 velocityPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/2W*C15B*'
@@ -671,11 +847,12 @@ angvelPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/main_data/1W600C*'
 
 #plot_trajs(dataPath)
 #msd_individual(dataPath)
-#msd_ensemble(dataPath, 1)
+#msd_ensemble()
 #velocity_calc_save(velocityPath)
 #plot_orientation(velocityPath, 1) # doesn't work
 #plot_mean_velocity(velocityPath)
 #plot_images(imagePath)
-#plot_velocity(velocityPath, 1)
-plot_orientation_old(angvelPath, 2)
+#plot_velocity()
+#plot_orientation_old(angvelPath, 2)
+mixed_plots()
 
