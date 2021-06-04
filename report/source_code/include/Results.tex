@@ -651,19 +651,22 @@ The direction of the bugs is marked with black arrows.}
 \end{figure}
 
 
-Here the bugs assist each other to push away some obstacles from the border of the arena, 
-and thus making way for other bugs to move freely at the edges. The observation in \cref{fig:CBPO} 
-is taken from three different experiments where in each experiment four consecutive frames are taken showing how the bugs move. 
-Note that in these examples shown, the assistance of other bugs that were not initially pushing 
-the obstacles do make a significant difference in moving them, either by speeding up the process or 
-clearing out a bigger area of obstacles.
+Here the bugs assist each other to push away some 
+obstacles from the border of the arena, and thus 
+making way for other bugs to move freely at the edges. 
+The observation in \cref{fig:CBPO} is taken from three 
+different experiments where in each experiment four consecutive 
+frames are taken showing how the bugs move. Note that in these 
+examples shown, the assistance of other bugs that were not initially pushing 
+the obstacles do make a significant difference in moving them, 
+either by speeding up the process or clearing out a bigger area of obstacles.
 
-Next example is when the bugs are pushing onto each other preventing the scenario where some bugs 
-are being blocked and confined by obstacles.
+Next example is when the bugs are pushing onto each other 
+preventing the scenario where some bugs are being blocked 
+and confined by obstacles.
 
 \begin{figure}[htpb!]
 \centering
-%\captionsetup{justification=centering,margin=2cm}
 \captionsetup[subfigure]{labelformat=empty}
 \subfloat[$t_0$\label{fig:1W800C25B_frame1}]
 {\includegraphics[width=.2\textwidth]{figure/CBP/1W800C25B/1W800C25B_CBP_post_frame1.png}} \quad
@@ -691,20 +694,23 @@ are being blocked and confined by obstacles.
 {\includegraphics[width=.2\textwidth]{figure/CBP/1W900C5B/1W900C5B_CBP_post_frame4.png}}
 
 \caption{Examples of cooperative behavior where one 
-bug push another bug that is being blocked, to move forward. When facing an obstacle one single bug might not be strong 
-enough to move the obstacles in front, but when another bug join, they are able to together push the obstacle away 
-making channels for other bugs.
+bug push another bug that is being blocked, to move forward. 
+When facing an obstacle one single bug might not be strong 
+enough to move the obstacles in front, but when another bug join, 
+they are able to together push the obstacle away making channels for other bugs.
 } 
 \label{fig:CBP}
 \end{figure}
 
 
-As for the case of cooperative behavior shown i \cref{fig:CBP}, where a push bug push another 
-bug, the outcome where the pushing bug successfully push another bug from its unmovable position 
-doesn't always happen. When the obstacle weight is too high and if there are too many obstacle 
-in front of the bugs, both the bugs will become stuck. With that said, when two bugs do collide 
-they tend to change each others movement in some way and thus destroy whatever equilibrium they 
-were in, which will create more movements.
+As for the case of cooperative behavior shown i \cref{fig:CBP}, 
+where a push bug push another bug, the outcome where the pushing 
+bug successfully push another bug from its unmovable position 
+doesn't always happen. When the obstacle weight is too high and 
+if there are too many obstacle in front of the bugs, both the bugs 
+will become stuck. With that said, when two bugs do collide 
+they tend to change each others movement in some way and thus 
+destroy whatever equilibrium they were in, which will create more movements.
 
 The motivation of categorising the above behaviors in \cref{fig:CBPO,fig:CBP} as 
 ''Cooperative behaviors'' can be put as follows. Since 
@@ -716,8 +722,10 @@ from being blocked. So any action, from a particle onto another one, that increa
 ensemble displacement will be considered as cooperative behavior.
 
 
-Now the next reoccurring behavior, which is shown in \cref{fig:CMC}, is when the bugs 
-create a circular shaped channel and keep reusing it, circling inside for many lapses. 
+Now the next reoccurring behavior, which is shown 
+in \cref{fig:CMC}, is when the bugs create a circular 
+shaped channel and keep reusing it, circling inside for 
+many lapses. 
 
 
 \begin{figure}[htpb!]
@@ -730,41 +738,56 @@ create a circular shaped channel and keep reusing it, circling inside for many l
 {\includegraphics[width=.30\textwidth]{figure/CMC/1W800C15B/1W800C15B_CMC_post.png}}\quad
 \subfloat[4 lapses\label{fig:CMC_1W1000C20B_d}]
 {\includegraphics[width=.30\textwidth]{figure/CMC/1W1000C20B/1W1000C20B_CMC_post.png}}
-\caption{Examples where the bugs are circling inside a circle shaped channel for many lapses. 
-The bugs might end up in this situation coming from other channels, and due to its chirality 
-they might circle around for some lapse before moving on through nearby channels. In 
-some cases while the bugs are circling, other bugs might push and move the obstacles adding 
-walls to this circular shaped channels making them more stable. This leads to the bugs inside, 
-the fully closed circular channel, traversing around for many lapses, as seen in \textbf{(a)} and \textbf{(b)}.} 
+\caption{Examples where the bugs are circling inside 
+a circle shaped channel for many lapses. The bugs might 
+end up in this situation coming from other channels, 
+and due to its chirality they might circle around for some 
+lapse before moving on through nearby channels. In some cases 
+while the bugs are circling, other bugs might push and move 
+the obstacles adding walls to this circular shaped channels making 
+them more stable. This leads to the bugs inside, the fully closed 
+circular channel, traversing around for many lapses, 
+as seen in \textbf{(a)} and \textbf{(b)}.} 
 \label{fig:CMC}
 \end{figure}
 
-This circling behavior is presented in the four examples, \cref{fig:CMC_0W1200C15B_a,fig:CMC_1W800C10B_b,fig:CMC_1W800C15B_c,fig:CMC_1W1000C20B_d}, 
-with the trajectories of the bugs marked in red and the number of lapses of which the bugs are circling around. 
+This circling behavior is presented in the four examples, 
+\cref{fig:CMC_0W1200C15B_a,fig:CMC_1W800C10B_b,fig:CMC_1W800C15B_c,fig:CMC_1W1000C20B_d}, 
+with the trajectories of the bugs marked in red and the number 
+of lapses of which the bugs are circling around. 
 
-This type of ''local'' channel i.e. not expanding over a large area of the arena, tend to be more stable 
-than the channels that extend over a larger area. The reason for this is that for the latter type of 
-channel, the likelihood of another bug cutting through and destroy the channel is higher. 
-These circular shaped channels are mostly formed between rigid boundary from the stage(\cref{fig:boundary}) 
-and obstacles, this means that 
-a portion of the channel will be immovable part supported by the rigid bounday, and the movable part formed 
-by the obstacles. This will decrease the chance of channels being destroyed since it is partly immovable.
+This type of ''local'' channel i.e. not expanding over a large 
+area of the arena, tend to be more stable than the channels 
+that extend over a larger area. The reason for this is that 
+for the latter type of channel, the likelihood of another bug 
+cutting through and destroy the channel is higher. These circular 
+shaped channels are mostly formed between rigid boundary from the stage(\cref{fig:boundary}) 
+and obstacles, this means that a portion of the channel will be an 
+immovable part supported by the rigid bounday, and the movable part formed 
+by the obstacles. This will decrease the chance of channels being 
+destroyed since it is partly immovable.
 
-Now the duration of the bugs circling in these channels will depend on how much of the channel 
-consist of the rigid boundary, which is immovable by the bugs. In \cref{fig:CMC_0W1200C15B_a}, the bug manage to stay in 
-the channel for 7 lapses compared to the case in \cref{fig:CMC_1W800C15B_c}, which is only 2 lapses. 
-One could immediately see the differences in these two channels where in the first case a big segment 
-of the channel constitute of the rigid boundary made by wood, roughly two-thirds of the channel. Whereas the latter 
-case where the bug only circle for 2 lapses, this channel constitute mostly of obstacles and empty spaces, 
-roughly two-third of the channel being movable and one-third immovable, this will increase the likelihood 
-of the bug destroying or escaping the channel. 
+Now the duration of the bugs circling in these channels will 
+depend on how much of the channel consist of the rigid boundary, 
+which is immovable by the bugs. In \cref{fig:CMC_0W1200C15B_a}, 
+the bug manage to stay in the channel for 7 lapses compared to 
+the case in \cref{fig:CMC_1W800C15B_c}, which is only 2 lapses. 
+One could immediately see the differences in these two channels 
+where in the first case a big segment of the channel constitute 
+of the rigid boundary made by wood, roughly two-thirds of the channel. 
+Whereas the latter case where the bug only circle for 2 lapses, 
+this channel constitute mostly of obstacles and empty spaces, 
+roughly two-third of the channel being movable and one-third immovable, 
+this will increase the likelihood of the bug destroying or escaping the channel. 
 
-Generally the channels tend to be quite unstable, especially the ones that cover a large area of 
-the stage consisting only of obstacles and no rigid boundaries. Every time a bug uses a channel it moves 
-the obstacles slightly, and after many usages, the channel is destroyed, this phenomena is faster for 
-lighter obstacles and when there are many bugs on the stage.
+Generally the channels tend to be quite unstable, especially the ones 
+that cover a large area of the stage consisting only of obstacles and 
+no rigid boundaries. Every time a bug uses a channel it moves 
+the obstacles slightly, and after many usages, the channel is destroyed. 
+A channel is destroyed faster when using light obstacles and high number of bugs.
 
-An example of the type of channel that stretches across the stage is shown in \cref{fig:CM_0W900C10B}.
+An example of the type of channel that stretches across the stage 
+is shown in \cref{fig:CM_0W900C10B}.
 
 \begin{figure}[htpb!]
 \centering
@@ -778,15 +801,18 @@ end with $\rightarrow$. The bug that traverses this trajectory is marked with a 
 \label{fig:CM_0W900C10B}
 \end{figure}
 
-Again, these type of channel shown in \cref{fig:CM_0W900C10B} tend to be unstable with 
-reasons mentioned before. Compared to the circular shaped channels shown in \cref{fig:CMC}, these long type 
-are quite exposed to other bugs destroying it, by either pushing away the obstacles that make up the walls of the channels 
-or moving some obstacles into the channel and thus blocking the channel. 
+Again, these type of channel shown in \cref{fig:CM_0W900C10B} 
+tend to be unstable with reasons mentioned before. 
+Compared to the circular shaped channels shown in \cref{fig:CMC}, these long type 
+are quite exposed to other bugs destroying it, by either pushing away 
+the obstacles that make up the walls of the channels or moving some 
+obstacles into the channel and thus blocking the channel. 
 
-With only 10 bugs in this experiment, in \cref{fig:CM_0W900C10B}, it is relatively easy to spot when a channel is 
-being created, reuse and destroyed. When the number of bugs is higher than this, the 
-stage gets somewhat cluttered which makes it harder to spot a channel and also the 
-high number of bugs will raise the likelihood of a channel being destroyed.
+With only 10 bugs in this experiment, in \cref{fig:CM_0W900C10B}, 
+it is relatively easy to spot when a channel is being created, 
+reuse and destroyed. When the number of bugs is higher than this, the 
+stage gets somewhat cluttered which makes it harder to spot a channel 
+and also the high number of bugs will raise the likelihood of a channel being destroyed.
 
 With only one bug, it is easier to track its behavior, as seen in \cref{fig:CM_0W1000C1B}.
 
@@ -809,19 +835,23 @@ end with $\rightarrow$. The bug that traverses this trajectory is marked with a 
 \label{fig:CM_0W1000C1B}
 \end{figure}
 
-In this one bug case it is easy to spot the moment when the bug is using a channel and 
-some part of the channel last relatively long since there is no other bug that can 
-destroy the channel. The channels that are formed in the experiments with low 
-number of bugs and high obstacle density tend to be longer in distance and more 
-stable i.e. stay intact for a longer period of time. This can be visualized 
-in \cref{fig:CM_0W1000C1B_1,fig:CM_0W1000C1B_2,fig:CM_0W1000C1B_3}, where 
-the overall appearance of the stage, with the preexisting channels, looks 
+In this one bug case it is easy to spot the 
+moment when the bug is using a channel, 
+and some part of the channel last relatively 
+long since there is no other bug that can 
+destroy the channel. The channels that are 
+formed in the experiments with low number of bugs 
+and high obstacle density tend to be longer in distance 
+and more stable i.e. stay intact for a longer period of time. 
+This can be visualized in \cref{fig:CM_0W1000C1B_1,fig:CM_0W1000C1B_2,fig:CM_0W1000C1B_3}, 
+where the overall appearance of the stage, with the preexisting channels, looks 
 close to identical. In the one bug example, in \cref{fig:CM_0W1000C1B} the duration 
 for with the bug to reuse the different channels spans from $t_{\text{duration}}=\SI{4}{\second}$ 
 to $t_{\text{duration}}=\SI{11}{\second}$, which are some of the longest duration observed 
 amongst the different experiments regarding channel behaviors.
 
-Another type of situation where several bugs reuse the same channel is presented in \cref{fig:CM_0W900C25B}.
+Another type of situation where several bugs reuse the same 
+channel is presented in \cref{fig:CM_0W900C25B}.
 
 \begin{figure}[htpb!]
 \centering
