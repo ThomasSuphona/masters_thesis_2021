@@ -16,6 +16,7 @@ import matplotlib.colors
 import plot_lib as pl
 import matplotlib.image as mpimg
 import scipy.io as scio
+from scipy.ndimage import uniform_filter1d
 
 def read_data(listOfFiles):
 
@@ -84,7 +85,10 @@ def read_data(listOfFiles):
 
     return angularVelocityDict
 
-def plot_trajs(dataPath):
+def plot_trajs():
+
+    dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/1W1000C1B*'
+
     @pims.pipeline
     def gray(image):
         return image[:, :, 1]  # Take just the green channel
@@ -96,7 +100,7 @@ def plot_trajs(dataPath):
     listOfFiles = listOfFiles[::2]
     
     pl.update_settings(usetex=True)
-    fig, axs = pl.create_fig(ncols=1, nrows=4, height=1.65)
+    fig, axs = pl.create_fig(ncols=1, nrows=1, height=1.65)
     
 
     for i, ax in enumerate(fig.axes):
@@ -126,7 +130,8 @@ def plot_trajs(dataPath):
             #trajs2 = trajs1[(trajs1['mass'] > 3000)] # for older vids
             
             f_last = np.max(trajs.frame)
-            
+            frameNbr = f_last
+            print(f_last)
   
             trajs = trajs[trajs.frame < frameNbr]
             
@@ -148,7 +153,7 @@ def plot_trajs(dataPath):
             #pl.add_label(ax, text=label)
             ax.set_title(label)
 
-    outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/traj_images/1W1100CNB_traj.png'
+    outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/traj_images/1W1100CNB_traj.pdf'
     
     #plt.subplots_adjust(hspace = .01)
     plt.savefig(outpath, bbox_inches='tight', dpi=1000, pad_inches=0.0)
@@ -188,7 +193,7 @@ def msd_ensemble():
     #'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data_old/C20B838P0M.h5']
     #listOfFiles = lst
     N = 1
-    l1 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W*C10B*'
+    l1 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W1000C1B*'
     l2 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/1W*C10B*'
     l3 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/2W*C10B*'
     l4 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/3W*C10B*'
@@ -197,10 +202,10 @@ def msd_ensemble():
 
     mpp = 0.89/1266
     fps = 30            #yeah fps = 1
-    max_lagtime = 500    # frames
+    max_lagtime = 6000    # frames
 
     pl.update_settings(usetex=True)
-    fig, axs = pl.create_fig(ncols=2, nrows=2, height=1.65)
+    fig, axs = pl.create_fig(ncols=1, nrows=1, height=1.65)
     
     for i, ax in enumerate(fig.axes):
         listOfFiles = glob.glob(l[i])
@@ -259,70 +264,72 @@ def msd_ensemble():
                 trajs = tp.filter_stubs(trajs, 10)  #  10
                 trajs = trajs[(trajs['mass'] > 4500)] # 4500
            
+            
             em = tp.emsd(trajs, mpp, fps, max_lagtime=max_lagtime)
             p = ax.plot(em.index, em, 'o', label=label, markersize=5)
             #p = ax.plot(em.index, em/em.index, 'o', label=label)
 
-            t = 20
-            n = tp.utils.fit_powerlaw(em.iloc[0:t], plot=False).n.msd
-            A = tp.utils.fit_powerlaw(em.iloc[0:t], plot=False).A.msd
-            slope_short[ifile] = n
-            A_short[ifile] = A
+            print(em)
+        #     t = 20
+        #     n = tp.utils.fit_powerlaw(em.iloc[0:t], plot=False).n.msd
+        #     A = tp.utils.fit_powerlaw(em.iloc[0:t], plot=False).A.msd
+        #     slope_short[ifile] = n
+        #     A_short[ifile] = A
 
        
-            n = tp.utils.fit_powerlaw(em.iloc[t:-1], plot=False).n.msd
-            A = tp.utils.fit_powerlaw(em.iloc[t:-1], plot=False).A.msd
-            slope_long[ifile] = n
-            A_long[ifile] = A
+        #     n = tp.utils.fit_powerlaw(em.iloc[t:-1], plot=False).n.msd
+        #     A = tp.utils.fit_powerlaw(em.iloc[t:-1], plot=False).A.msd
+        #     slope_long[ifile] = n
+        #     A_long[ifile] = A
             
 
       
-        A_s = np.max(A_short)
-        n_s = np.max(slope_short)
-        x1 = em.index[1:7]
-        y1 = 2*A_s*em.index[1:7]**n_s 
-        ax.plot(x1, y1, 'k--', linewidth=1)
-        ax.text(x1.values[2]*0.5, y1.values[2]*1.2, 
-            r'$\propto\tau^{{{:.2f}}}$'.format(n_s), rotation=0)
+        # A_s = np.max(A_short)
+        # n_s = np.max(slope_short)
+        # x1 = em.index[1:7]
+        # y1 = 2*A_s*em.index[1:7]**n_s 
+        # ax.plot(x1, y1, 'k--', linewidth=1)
+        # ax.text(x1.values[2]*0.5, y1.values[2]*1.2, 
+        #     r'$\propto\tau^{{{:.2f}}}$'.format(n_s), rotation=0)
         
 
-        A_l = np.nanmin(A_long)
-        n_l = np.nanmin(slope_long)
-        x2 = em.index[100:400]
-        y2 = 0.8*A_l*em.index[100:400]**n_l
-        ax.plot(x2, y2, 'k--', linewidth=1)
-        ax.text(x2.values[200]*0.5, y2.values[200]*0.2, 
-            r'$\propto\tau^{{{:.2f}}}$'.format(n_l), rotation=0)
-        #print(x2.values[200]*0.5, y2.values[200]*0.2)
-        #print(em.index)
+        # A_l = np.nanmin(A_long)
+        # n_l = np.nanmin(slope_long)
+        # x2 = em.index[100:400]
+        # y2 = 0.8*A_l*em.index[100:400]**n_l
+        # ax.plot(x2, y2, 'k--', linewidth=1)
+        # ax.text(x2.values[200]*0.5, y2.values[200]*0.2, 
+        #     r'$\propto\tau^{{{:.2f}}}$'.format(n_l), rotation=0)
+       
         
             
 
-        #ax.set_title(title)
+        ax.set_title(title)
         ax.set_xscale('log')
         ax.set_yscale('log')
         ax.set_xlabel(r'lagtime $\tau$ [s]')
         ax.set_ylabel(r'MSD($\tau$) [$m^2$]')
         #ax.set_ylabel(r'MSD($\tau$)/$\tau$ [$m^2$]')
-        ax.legend(loc='upper left', prop={'size': 5})
-        pl.add_label(ax, text=axlabel[i])
+        #ax.legend(loc='upper left', prop={'size': 5})
+        #pl.add_label(ax, text=axlabel[i])
         
-    outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/msd_plots/NC_msd.pdf'
+    outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/msd_plots/0W1000C1B_msd.pdf'
     pl.tight_layout(fig=fig)
     plt.savefig(outpath)
     plt.show()
  
-def velocity_calc_save(dataPath):
+def velocity_calc_save():
+    dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W1000C1B*'
     listOfFiles = glob.glob(dataPath)
     listOfFiles = natsorted(listOfFiles)
 
-    outputPath = 'C:/Users/THOMAS/Desktop/master_thesis_2020/code/velocity_data/'
+    outputPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/'
     for ifile, file in enumerate(listOfFiles[:]):
         fileName = ntpath.basename(file)
         expName = fileName.split('.')[0]
         label = expName
         outputPathData = outputPath + expName + '.h5'
-
+        print(expName)
 
         nbrWeight = int(expName.split('W')[0])
         nbrObstacles = int(expName.split('W')[1].split('C')[0])
@@ -714,21 +721,34 @@ def plot_orientation_old(dataPath, N):
     plt.show()
 
 def mixed_plots():
-    l1 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/1W*C10B*'
-    l2 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/1W1300C*'
     
-    N1, N2 = 1, 2 
+    l1 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/0W1000C1B*'
+    o1 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/velocity_plots/0W1000C1B_vt.pdf'
+    l2 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W1000C1B*'
+    o2 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/traj_images/0W1000C1B_traj.pdf'
+
+    inpath = l1
+    outpath = o1
 
     pl.update_settings(usetex=True)
     fig, axs = pl.create_fig(ncols=1, nrows=1, height=1.65)
     
-    plot_velocity_test(path=l1, N=N1, ax=axs)
+    #plot_trajs_test(inpath, axs)
+    
+    plot_time_velocity(inpath, axs)
+
+    #plot_orientation_old_test(l1, N1, axs[0])
+    #pl.add_label(axs[0], text='(a)')
+
+    #plot_orientation_old_test(l2, N2, axs[1])
+    #pl.add_label(axs[1], text='(b)')
+
+    #plot_velocity_test(path=l1, N=N1, ax=axs)
     #pl.add_label(axs, text='(a)')
 
     #plot_velocity_test(path=l2, N=N2, ax=axs[1])
     #pl.add_label(axs[1], text='(b)')
         
-    outpath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/velocity_plots/NC_vel.pdf'
     pl.tight_layout(fig=fig)
     plt.savefig(outpath)
     plt.show()
@@ -839,16 +859,224 @@ def plot_velocity_test(path, N, ax):
     ax.set_xlim([0, 0.8])
     ax.set_ylabel('Density')
 
+def plot_orientation_old_test(path, N, ax):
 
-dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/1W*C10B*'
+    if N == 1:
+        t = 3
+        r = 10000
+    elif N == 2:
+        t = 2
+        r = 5000
+    listOfFiles = glob.glob(path)
+    listOfFiles = natsorted(listOfFiles)
+    listOfFiles = listOfFiles[::t]
+
+    angularVelocity = read_data(listOfFiles)
+    nameExperiments = list(angularVelocity.keys())
+
+    d = {}
+    for iexp, experiment in enumerate(nameExperiments[:]):
+
+        angVel = angularVelocity[experiment][3]
+        #angVel = angVel[np.nonzero(angVel)]
+        #angVel = angVel[angVel >= 0.00001]
+
+        nbrWeight = int(angularVelocity[experiment][0])
+        nbrObstacles = int(angularVelocity[experiment][1])
+        nbrActive = int(angularVelocity[experiment][2])
+
+        label = experiment
+
+
+        if nbrObstacles == 0:
+            bugTitle = r'$N_{passive}=%d$' % (nbrObstacles)
+        else:
+            bugTitle = r'$N_{passive}=%d$ and $m_{passive}=%d\cdot10^{-3}$kg' % (nbrObstacles, nbrWeight * 5 + 2)
+
+        bugLabel = r'$N_{active}=%d$' % (nbrActive)
+
+        weightTitle = r'$N_{passive}=%d$ and $N_{active}=%d$' % (nbrObstacles, nbrActive)
+        weightLabel = r'$m_{passive}$=%d$\cdot10^{-3}$kg' % (nbrWeight * 5 + 2)
+
+        obstaclesTitle = r'$m_{passive}=%d\cdot10^{-3}$kg and $N_{active}=%d$' % (nbrWeight * 5 + 2, nbrActive)
+        obstaclesLabel = r'$N_{passive}=%d$' % (nbrObstacles)
+
+        if N == 0:
+            title = weightTitle
+            label = weightLabel
+        elif N == 1:
+            title = obstaclesTitle
+            label = obstaclesLabel
+        elif N == 2:
+            title = bugTitle
+            label = bugLabel
+
+        print(len(angVel))
+        d[label] = angVel[:r]/ 5
+            
+    df = pd.DataFrame(d)
+    
+    gfg = sns.kdeplot(data=df, fill=False, common_norm=False, palette="bright",
+            alpha=.5, linewidth=1, cumulative=False, ax=ax, legend=True)
+
+    ax.set_title(title)
+    ax.set_xlabel(r'$\omega$ [rad/s]')
+    ax.set_ylabel('Density')
+    ax.set_xlim([-5, 5])
+     
+      
+    plt.setp(gfg.get_legend().get_texts(), fontsize='5')
+ 
+def plot_time_velocity(path, ax):
+    mpp = 0.89/1266
+    fps = 30            
+    travers = np.array([[686, 722], 
+    [1946, 2066],
+    [2177, 2242],
+    [2545, 2586],
+    [2841, 2891],
+    [2899, 2961],
+    [2975, 3041],
+    [3307, 3434],
+    [3499, 3592],
+    [3723, 3839],
+    [3972, 4040],
+    [4790, 4907],
+    [5038, 5135]])
+
+    listOfFiles = glob.glob(path)
+    listOfFiles = natsorted(listOfFiles)
+    listOfFiles = listOfFiles[:] 
+ 
+    title = ''
+    for ifile, file in enumerate(listOfFiles[:]):
+        fileName = ntpath.basename(file)
+        expName = fileName.split('.')[0]
+        
+        nbrWeight = int(expName.split('W')[0])
+        nbrObstacles = int(expName.split('W')[1].split('C')[0])
+        nbrActive = int(expName.split('W')[1].split('C')[1].split('B')[0])
+
+        data = pd.read_hdf(file, 'df')
+        
+        nbrFrames = np.max(list(set(data.frame)))
+      
+        vel = np.zeros((nbrFrames+1, 2))
+        vel[:, 0] = np.arange(0, nbrFrames+1)
+
+        for f in set(data.frame):
+            sub = data[data.frame==f]
+            vel[f, 0] = f #may be unnecessary
+            nbrParticles = 0
+            sum = 0
+            for p in set(sub.particle):
+                curr = sub[sub.particle==p]    
+                sum +=  np.sqrt(curr.dx.values**2 + curr.dy.values**2)*mpp*fps
+                nbrParticles += 1
+        
+            vel[f, 1] = sum/nbrParticles
+            
+            #c += 1
+            #if c == 3000:
+            #    break
+        
+        
+              
+        #print(data.frame.tolist()[-1])
+        #print(data.index)
+        #vel = np.sqrt(data.dx**2 + data.dy**2)*mpp*fps
+        #vel = vel.values.tolist()
+        #d[label] = vel[:1500]
+        #vel = vel[vel[:, 1] > 0]
+        vel[:, 1] = uniform_filter1d(vel[:, 1], size=20)
+
+        start, stop = 2586, 3307
+        #vel[:, 0] = vel[:, 0]/fps
+        ax.plot(vel[start:stop, 0], vel[start:stop, 1], '-')
+        
+        #for seg in travers:
+        #    if seg[0] >= start and seg[1] <= stop:
+        #        ax.plot(vel[seg[0]:seg[1], 0], vel[seg[0]:seg[1], 1], '-r')       
+
+
+       
+    title = expName   
+
+    ax.set_title(title)
+    ax.set_xlabel(r't [s]')
+    ax.set_ylabel(r'v [m/s]')
+
+def plot_trajs_test(path, ax):
+
+    @pims.pipeline
+    def gray(image):
+        return image[:, :, 1]  # Take just the green channel
+
+
+    listOfFiles = glob.glob(path)
+    listOfFiles = natsorted(listOfFiles)
+    listOfFiles = listOfFiles[::-1]
+    listOfFiles = listOfFiles[:]
+        
+    ax.tick_params(top=False, bottom=False, left=False, right=False,
+            labelleft=False, labelbottom=False)
+    ax.xaxis.set_visible(False)
+    ax.yaxis.set_visible(False)
+
+    for ifile, file in enumerate(listOfFiles[:]):
+        fileName = ntpath.basename(file)
+        print(fileName)
+
+        s = fileName.split('.')[0]
+        w = int(s.split('W')[0])
+        c = int(s.split('W')[1].split('C')[0])
+        b = int(s.split('W')[1].split('C')[1].split('B')[0])
+        clabel = '$N_{passive}=%d$'%c
+        wlabel = '$m_{passive}=%d\cdot10^{-3}$kg'%(2+5*w)
+        blabel = '$N_{active}=%d$'%b
+
+        with tp.PandasHDFStore(file) as s:
+            trajs = pd.concat(iter(s))
+        s.close()
+
+        f_last = np.max(trajs.frame)
+        frameNbr = f_last    
+
+      
+        imagePath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/' \
+                     'image_sequences/' + fileName.split('.')[0] +  \
+                     '/frame-{:04d}.png'.format(frameNbr)
+                 
+        frame = gray(pims.ImageSequence(imagePath))
+        #frames = pims.ImageSequence(imagePath) # old vids
+
+        trajs = tp.filter_stubs(trajs, 0)
+        trajs = trajs[(trajs['mass'] > 4500)]
+        #trajs2 = trajs1[(trajs1['mass'] > 3000)] # for older vids
+        
+        trajs = trajs[trajs.frame < frameNbr]
+    
+        tp.plot_traj(trajs, 
+        superimpose=frame, 
+        ax=ax, 
+        plot_style={'color': 'red', 'alpha': 0.7, 'linewidth': 1}
+        )
+        
+        title = fileName
+    
+        ax.set_title(fileName)
+
+    
+
+#dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/1W*C10B*'
 #imagePath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/image_sequences/1W1000C*'
-velocityPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/2W*C15B*'
-angvelPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/main_data/1W600C*'
+#velocityPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/velocity_data/2W*C15B*'
+#angvelPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/main_data/1W600C*'
 
-#plot_trajs(dataPath)
+#plot_trajs()
 #msd_individual(dataPath)
 #msd_ensemble()
-#velocity_calc_save(velocityPath)
+#velocity_calc_save()
 #plot_orientation(velocityPath, 1) # doesn't work
 #plot_mean_velocity(velocityPath)
 #plot_images(imagePath)

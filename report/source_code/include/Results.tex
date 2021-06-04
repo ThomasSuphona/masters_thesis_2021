@@ -345,214 +345,141 @@ where the velocities of the active particles converge towards zero,
 independent of the obstacle weight, as the packing density increases.    
 
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-%\captionsetup{justification=centering,margin=2cm}
 \subfloat[$t=\SI{32}{s}$\label{fig:0W300C25B_0032}]
 {\includegraphics[width=.3\textwidth]{figure/congestion/0W300C25B_0032_ipe.png}} \quad
 \subfloat[$t=\SI{33}{s}$\label{fig:0W300C25B_0033}]
 {\includegraphics[width=.3\textwidth]{figure/congestion/0W300C25B_0033_ipe.png}} \quad
 \subfloat[$t=\SI{34}{s}$\label{fig:0W300C25B_0034}]
 {\includegraphics[width=.3\textwidth]{figure/congestion/0W300C25B_0034_ipe.png}} \quad
-\caption{An example showing congestion like behavior, in three consecutive frames,  where the active particles hinder each 
-other from moving when going in the opposite direction. Three particles in the upper right corner and 
-two in the upper left corner, the particles being stuck are marked with black arrows showing their instantaneous orientation. 
-The last frame at $t=\SI{34}{s}$ shows the three particles in the upper right corner just escaping out from the congestion 
+\caption{An example showing congestion like behavior, 
+in three consecutive frames,  where the active particles hinder each 
+other from moving when going in the opposite direction. 
+Three particles in the upper right corner and 
+two in the upper left corner, the particles being stuck 
+are marked with black arrows showing their instantaneous orientation. 
+The last frame at $t=\SI{34}{s}$ shows the three particles 
+in the upper right corner just escaping out from the congestion 
 while the two particles in the upper left corner are still being stuck.}
 \label{fig:0W300C25B_congestion}
 \end{figure}
 
+This hindering behavior in \cref{fig:0W300C25B_congestion} 
+happens more frequently as the number of active particles increases, 
+and as a consequence, the ensemble mean velocity of the active 
+particles decreases when this happens. 
 
+The differences that was seen when observing the active 
+particles velocity as a function of number active particles is that, 
+higher number of active particles leads to a velocity 
+distribution peak at a lower velocity, 
+and the explanation being, because of the stage being 
+overpopulated with active particles, they hinder each other 
+from moving as in \cref{fig:0W300C25B_congestion} which in 
+turn leads to them having low velocity.
 
-This hindering behavior in \cref{fig:0W300C25B_congestion} happens more frequently as the number of active particles increases, and 
-as a consequence, the ensemble mean velocity of the active particles decreases when this happens. 
-
-%Having seen how the velocity distribution of the active particles depend on the the number of active particles, in 
-%\cref{fig:4velhist_0W}, with $m_{\text{passive}}=\SI{2e-3}{kg}$ at different obstacle density. 
-The differences that was seen when observing the active particles velocity as a function of number active particles is that, 
-higher number of active particles leads to a velocity distribution peak at a lower velocity, 
-and the explanation being, because of the stage being overpopulated with active particles, they hinder each other from moving 
-as in \cref{fig:0W300C25B_congestion} which in turn leads to them having low velocity.
-
-%99To further investigate the number of active particles as a parameter, the velocity distributions with 
-%heavier obstacle weights is shown in \cref{fig:4velhist_1W,fig:4velhist_2W,fig:4velhist_3W}.
-
-
-%\begin{figure}[htbp!]
-%\centering
-%%\captionsetup{justification=centering,margin=2cm}
-%\subfloat[$N_{\text{passive}}=200$\label{fig:velhist_1W200CNB}]
-%{\includegraphics[width=.5\textwidth]{figure/velocity/1W(4C)NB/velhist_1W200CNB_dens.png}}
-%\subfloat[$N_{\text{passive}}=600$\label{fig:velhist_1W600CNB}] {\includegraphics[width=.5\textwidth]{figure/velocity/1W(4C)NB/velhist_1W600CNB_dens.png}}\\
-%\subfloat[$N_{\text{passive}}=800$\label{fig:velhist_1W800CNB}]
-%{\includegraphics[width=.5\textwidth]{figure/velocity/1W(4C)NB/velhist_1W800CNB_dens.png}}
-%\subfloat[$N_{\text{passive}}=1000$\label{fig:velhist_1W1000CNB}] {\includegraphics[width=.5\textwidth]{figure/velocity/1W(4C)NB/velhist_1W1000CNB_dens.png}}
-%\caption{Velocity distributions of the active particles with $m_{\text{passive}}=\SI{7e-3}{kg}$ at 
-%4 different obstacle density.} \label{fig:4velhist_1W}
-%\end{figure}
-
-
-%\begin{figure}[htbp!]
-%\centering
-%\captionsetup{justification=centering,margin=2cm}
-%\subfloat[$N_{\text{passive}}=200$\label{fig:velhist_2W200CNB}]
-%{\includegraphics[width=.5\textwidth]{figure/velocity/2W(4C)NB/velhist_2W200CNB_dens.png}}
-%\subfloat[$N_{\text{passive}}=300$\label{fig:velhist_2W300CNB}] {\includegraphics[width=.5\textwidth]{figure/velocity/2W(4C)NB/velhist_2W300CNB_dens.png}}\\
-%\subfloat[$N_{\text{passive}}=500$\label{fig:velhist_2W500CNB}]
-%{\includegraphics[width=.5\textwidth]{figure/velocity/2W(4C)NB/velhist_2W500CNB_dens.png}}
-%\subfloat[$N_{\text{passive}}=900$\label{fig:velhist_2W900CNB}] {\includegraphics[width=.5\textwidth]{figure/velocity/2W(4C)NB/velhist_2W900CNB_dens.png}}
-%\caption{Velocity distributions of the active particles with $m_{\text{passive}}=\SI{12e-3}{kg}$ at 
-%4 different obstacle density} \label{fig:4velhist_2W}
-%\end{figure}
-
-
-
-%\begin{figure}[htbp!]
-%\centering
-%%\captionsetup{justification=centering,margin=2cm}
-%\subfloat[$N_{\text{passive}}=100$\label{fig:velhist_3W100CNB}]
-%{\includegraphics[width=.5\textwidth]{figure/velocity/3W(4C)NB/velhist_3W100CNB_dens.png}}
-%\subfloat[$N_{\text{passive}}=300$\label{fig:velhist_3W300CNB}] {\includegraphics[width=.5\textwidth]{figure/velocity/3W(4C)NB/velhist_3W300CNB_dens.png}}\\
-%\subfloat[$N_{\text{passive}}=500$\label{fig:velhist_3W500CNB}]
-%{\includegraphics[width=.5\textwidth]{figure/velocity/3W(4C)NB/velhist_3W500CNB_dens.png}}
-%\subfloat[$N_{\text{passive}}=800$\label{fig:velhist_3W800CNB}] {\includegraphics[width=.5\textwidth]{figure/velocity/3W(4C)NB/velhist_3W800CNB_dens.png}}
-%\caption{Velocity distributions of the active particles with $m_{\text{passive}}=\SI{17e-3}{kg}$ at 
-%4 different obstacle density} \label{fig:4velhist_3W}
-%\end{figure}
-
-
-%As already been seen with $m_{\text{passive}}=\SI{2e-3}{kg}$ in \cref{fig:4velhist_0W}, the general observation  
-%regarding how the number of active particles is affecting their velocity, is that higher number of active 
-%particles leads to them having lower velocity. This can also be observe in cases with higher obstacle weight 
-%in \cref{fig:velhist_1W200CNB,fig:velhist_2W200CNB,fig:velhist_3W100CNB}, where at low obstacle density, 
-%the velocity distribution peaks at a value between $\SI{1}{\metre\per\second}\lesssim v \lesssim\SI{3}{\metre\per\second}$. 
-%And as before, the distributions for cases with higher number of active particles has either lower peaks at these 
-%nonzero velocity, or their distribution peaks is shifted towards lower velocity.
-
-%As the packing density increases, there are two things that can be observed. First is what was already seen in \cref{fig:velhist_0W300CNB,fig:velhist_0W800CNB}, 
-%where the velocity distributions shifts towards $v=\SI{0}{\metre\per\second}$ leading with cases of high number 
-%of active particles, followed by lower number of active particles cases, as seen in \cref{fig:velhist_1W800CNB,fig:velhist_2W500CNB}.
-%This suggest that while increasing the number of obstacles, the motion of the active particles becomes more limited and 
-%slower. Moreover this effect of slowing down the active particles by the obstacles is more prevalent when there are 
-%more active particles on the stage.
-
-%It is so far clear how the obstacle density affect the overall behaviour of the active particles in the extreme cases, 
-%with high obstacle density e.g. close to $N_{\text{passive}}=1300$, resulting in the active particles having low velocity close to zero, 
-%while low obstacle density leads to a higher velocity. Though this is true regardless of the obstacle weight, see \cref{fig:mean_velocity}, 
-%or the number of active particles, see \cref{fig:velhist_0W1200CNB,fig:velhist_1W1000CNB,fig:velhist_2W900CNB,fig:velhist_3W800CNB}, 
-%this transition from nonzero velocity to close-to-zero velocity happens faster with higher obstacle weight. The probability density 
-%of the active particles velocity shows a noticeable peak around $\SI{1}{\metre\per\second}\lesssim v \lesssim\SI{3}{\metre\per\second}$, 
-%when the obstacle density is low, see \cref{fig:velhist_0W100CNB,fig:velhist_1W200CNB,fig:velhist_2W200CNB,fig:velhist_3W100CNB}. 
-%This velocity density peaks then shift to $v\approx\SI{0}{\metre\per\second}$ when having high obstacle density, see 
-%\cref{fig:velhist_0W1200CNB,fig:velhist_1W1000CNB,fig:velhist_2W900CNB,fig:velhist_3W800CNB}. This transition happens 
-%fastest with the case where $m_{\text{passive}}=\SI{17e-3}{kg}$(\cref{fig:4velhist_3W}) and $m_{\text{passive}}=\SI{12e-3}{kg}$(\cref{fig:4velhist_2W}), within only 700 obstacles. 
-%While for lighter obstacle cases, this transition happens in 800 obstacles for $m_{\text{passive}}=\SI{7e-3}{kg}$(\cref{fig:4velhist_1W}) and 
-%in 1100 obstacles for $m_{\text{passive}}=\SI{2e-3}{kg}$(\cref{fig:4velhist_0W}), see \cref{fig:4velhist_0W,fig:4velhist_1W,fig:4velhist_2W,fig:4velhist_3W}.
-
-%The transition of the velocity distribution mentioned above involves a situation where there are peaks around two certain velocities 
-%at the same time. In many cases, the velocity distribution peaks close to $v=\SI{0}{\metre\per\second}$, but at some obstacle density, 
-%there will appear some peaks at a higher velocities, often somewhere between 
-%$\SI{1}{\metre\per\second}\lesssim v \lesssim\SI{3}{\metre\per\second}$, clearly seen in \cref{fig:velhist_0W800CNB,fig:velhist_1W600CNB,fig:velhist_2W500CNB,fig:velhist_3W500CNB}.
-
-
-%The peak of the velocity distribution at about zero velocity is due to the fact that the active particles spend time 
-%pushing obstacles or colliding into each other resulting in them having low velocity. On the other hand, 
-%the peak at higher velocities is due to the active particles moving unhindered through already formed channels. 
-
-%As the packing density increase even more, the peak of the velocity distribution at higher velocities will disappear 
-%leaving only distributions peaks at $v\approx\SI{0}{\metre\per\second}$, as can be seen in 
-%\cref{fig:velhist_0W1200CNB,fig:velhist_1W1000CNB,fig:velhist_2W900CNB,fig:velhist_3W800CNB}.99
-Regarding the number of obstacles, there is a strong intuition already about how this parameter 
-should affect the active particles motion, after having seen the result before. 
-The intuition is that the active particles velocity should decrease as the number of obstacles increases. 
-We confirm this with \cref{fig:velkde_1WNC10B}
+Regarding the number of obstacles, there is a strong intuition 
+already about how this parameter should affect the active 
+particles motion, after having seen the results before in \cref{fig:mean_velocity}. 
+The intuition is that the active particles velocity should 
+decrease as the number of obstacles increases. 
+We confirm this by visualizing the probability density of the active particles 
+velocity as a function of the number of obstacels in \cref{fig:velkde_1WNC10B}.
 
 
 \begin{figure}[htpb]
     \centering
-    %\captionsetup{justification=centering,margin=2cm}
-    \includegraphics[width=.7\textwidth]{figure/velocity/NC/1WNC10B.png}
-    \caption{Active particles probability distribution as a function of obstacle density. 
-	    The distribution shift to the left towards $v=0$ as the the number of obstacles increases, 
-	    an expected result since the active particles has less space to move on when the arena 
+    \includegraphics[width=.8\textwidth]{figure/velocity/NC_vel.pdf}
+    \caption{Active particles probability distribution 
+        as a function of obstacle density. 
+	    The distribution shift to the left towards $v=0$ 
+        as the the number of obstacles increases, 
+	    an expected result since the active particles 
+        has less space to move on when the arena 
 	    is filled with many obstacles.
     }
     \label{fig:velkde_1WNC10B}
 \end{figure}
 
-Having shortly discussed before, the scenario where the obstacle weight do not have any significant 
-effect on the active particles when the number of obstacles is low. The explanation was that when the 
-obstacle density is too sparse, then the interaction between active particles and obstacles will be minimal, 
-resulting in the different obstacle weight having no distinguishable effect on the active particle. 
-Though intuition suggest that there certainly are differences between a bug colliding with a heavy object
-in oppose to a light object. Hitting a heavy object, the rod shaped bugs should ''bounce'' off changing 
+Having shortly discussed before, the scenario where 
+the obstacle weight do not have any significant 
+effect on the active particles when the number of 
+obstacles is low. The explanation was that when the 
+obstacle density is too sparse, then the interaction 
+between active particles and obstacles will be minimal, 
+resulting in the different obstacle weight having no 
+distinguishable effect on the active particles. 
+Though intuition suggest that there certainly are 
+differences between a bug colliding with a heavy object
+in oppose to a light object. Hitting a heavy object, 
+the rod shaped bugs should ''bounce'' off changing 
 its direction more rapidly than when hitting a light object. 
 
-To investigate this, the orientational changes of the bugs in terms angular velocity are being used, 
-to see if their behavior is expected and how do their orientation gets affected by different parameter. 
-The angular velocity is the change of orientation per time unit and can be expressed as
+To investigate this, the orientational changes of the 
+bugs in terms angular velocity are being used, 
+to see if their behaviors are expected and how do their 
+orientation get affected by different parameters. 
+The angular velocity is the change of orientation per 
+time unit and can be expressed as
 
 \begin{align}
     \omega =& \dfrac{d\theta}{dt}
 \end{align}
 
-where $\omega$ is the angular velocity in unit $\si{\radian\per\second}$, $\theta$ is the orientation 
-measured in $\si{\radian}$. In \cref{fig:angvelkde_NW600C10B} shows how the obstacle weight affect 
+where $\omega$ is the angular velocity in unit 
+$\si{\radian\per\second}$, $\theta$ is the orientation 
+measured in $\si{\radian}$. In \cref{fig:angvelkde_NW600C10B} 
+shows how the obstacle weight affect 
 the angular velocity of the active particles.  
-
-
-
-
-
-%In many experiments while visualizing how the angular velocity $\omega$ change with the obstacle weight 
-%$m_{\text{passive}}$, there seems to show no trend of how different obstacle weight might affect the angular velocity, since 
-%most of the distributions of the angular velocity has their peaks around $\omega\approx\SI{0}{\radian\per\second}$. 
-%There are though some case where the angular velocity do change with the obstacle weight. For example the case of 
-%$N_{\text{passive}}=100$ and $N_{\text{active}}=1$ with varying obstacle weight, in \cref{fig:angvel_NW100C1B} 
 
 
 \begin{figure}[htpb!]
     \centering
-    %\captionsetup{justification=centering,margin=2cm}
-    \includegraphics[width=.7\textwidth]
-    {figure/velocity/angvel/NW200C10B.png}
-    \caption{Distributions of the active particles angular velocity for different obstacle weights. 
-	    The four distributions all peaks at $\omega\approx0$, the distribution for lighter obstacle weight(blue) 
-	    has a higher peak compared to the heavier one(red).
+    \includegraphics[width=.8\textwidth]
+    {figure/velocity/NW_angvel.pdf}
+    \caption{Distributions of the active particles angular 
+    velocity for different obstacle weights. 
+	The four distributions all peaks at $\omega\approx0$, 
+    the distribution for lighter obstacle weight(blue) 
+	has a higher peak compared to the heavier one(red).
     }
     \label{fig:angvelkde_NW600C10B}
 \end{figure}
 
-As can be observed in \cref{fig:angvelkde_NW600C10B}, most of the cases has their peaks 
-at $d\theta/dt\approx\SI{0}{\radian\per\second}$ while for $m_{\text{passive}}=\SI{2e-3}{kg}$(blue) 
-the distribution is peak is higher than for $m_{\text{passive}}=\SI{17e-3}{kg}$(red). This 
-suggest that there is a higher probability for the active particles to change their orientation 
-in an environment of heavy obstacles, more than light obstacles. This points to what was mentioned 
-earlier about the nature of the collisions between active and passive particles. 
-When the active particles collide with a heavy obstacle, the active particle will ''bounce off'' 
-and change direction more abruptly, similar mechanics as in elastic collisions. In contrast 
-with the scenario where the active particles collide with a light obstacle, they instead 
-push the obstacle forward for a short distance before going their own way again. 
+As can be observed in \cref{fig:angvelkde_NW600C10B}, 
+all of the cases has their peaks at 
+$d\theta/dt\approx\SI{0}{\radian\per\second}$ 
+while for $m_{\text{passive}}=\SI{2e-3}{kg}$(blue) 
+the distribution peak is higher than for 
+$m_{\text{passive}}=\SI{17e-3}{kg}$(red). 
+This suggest that there is a higher probability 
+for the active particles to change their orientation 
+rapidly in an environment of heavy obstacles, 
+more rapidly than with light obstacles. 
+This points to what was mentioned earlier about the 
+nature of the collisions between active and passive particles. 
+When the active particles collide with a heavy obstacle, 
+the active particle will ''bounce off'' and change their 
+direction more abruptly, similar mechanics as in elastic collisions. 
+In contrast with the scenario where the active particles collide with a light obstacle, 
+they instead push the obstacle forward for a short distance, then slowly 
+changing their direction before going on a new path. 
 
 Finally the angular velocity as a function of obstacle density and number of active particles is 
 shown in \cref{fig:angvelkde_1WNCNB}
 
-
-\begin{figure}[htbp!]
-\centering
-%\captionsetup{justification=centering,margin=2cm}
-\subfloat[vary obstacle density\label{fig:angvelkde_1WNC25B}]
-{\includegraphics[width=.5\textwidth]{figure/velocity/angvel/1WNC25B.png}}
-\subfloat[vary number active particles\label{fig:angvelkde_1W600CNB}]
-{\includegraphics[width=.5\textwidth]{figure/velocity/angvel/1W600CNB.png}}
-\caption{Varying obstacle density in left figure show that the distribution 
-	peak is higher at $\omega\approx0$ as the number of obstacles increases, 
-	compare \num{1300} obstacles(red) and \num{100} obstacles(blue). In 
-	the right figure, varying the number of active particles, show a higher 
-	distibution peak at $\omega\approx0$ for higher number of active particles(red), 
-	again a result of congestion. 
-} 
-\label{fig:angvelkde_1WNCNB}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.8\textwidth]{figure/velocity/mixed_angvel.pdf}
+    \caption{Varying obstacle density in \textbf{(a)} shows that the distribution 
+    peak is higher at $\omega\approx0$ as the number of obstacles increases, 
+    compare \num{1300} obstacles(red) and \num{100} obstacles(blue). In 
+    \textbf{(b)}, varying the number of active particles, shows a higher 
+    distibution peak at $\omega\approx0$ for higher number of active particles(red), 
+    again a result of congestion. 
+    } 
+    \label{fig:angvelkde_1WNCNB}
 \end{figure}
 
 Somewhat expected result in \cref{fig:angvelkde_1WNCNB}, since it was already observed when 
@@ -590,80 +517,106 @@ number of active particles increases. Similar pattern holds also for the angular
 \newpage
 \section{Collective Behaviours} \label{collective_behaviors}
 
-One of the main focus of this paper was to design a macroscale system in a way to provide the conditions for 
-collective behaviors to emerge. To be more specific, we want to observe cooperative behaviors such as, 
-active particles forming and reusing channels. Though this particular behavior is not the only cooperative behavior 
-since any other behaviors/interactions between the active particles that are mutually beneficial can 
-be classified as cooperative behavior. In our case, it is natural to define the goal for the active 
+One of the main focus of this thesis was to design a macroscale 
+system in a way to provide the conditions for collective behaviors 
+to emerge. To be more specific, we want to observe cooperative 
+behaviors such as, active particles forming and reusing channels. 
+Though this particular behavior is not the only cooperative behavior 
+since any other behaviors/interactions between the active particles 
+that are mutually beneficial can be classified as cooperative behavior. 
+In our case, it is natural to define the goal for the active 
 particles as maximizing their movements.
 
-In the experiments, there were some frequently occurring behaviors with the bugs that was difficult to quantify. 
-The easiest way was to do a qualitative observation by watching the recorded footage of the experiments.  
-Some of these behaviors occurs more frequent than others and may seem trivial. In this section, 
+In the experiments, there were some frequently occurring behaviors 
+with the bugs that was difficult to quantify. The easiest way 
+was to do a qualitative observation by watching the recorded 
+footage of the experiments. Some of these behaviors occurs more 
+frequent than others and may seem trivial. In this section, 
 different observed behaviors will be presented. 
 
-One behavior that happens in almost all the experiments is where the bugs become stuck at the boundary edges of the 
-arena, see \cref{fig:boundary}. This was a big issue with the two previous designs of the border where we first had a rectangular 
-border with $90^\circ$ corners(right boundary in \cref{fig:boundary} without the rounded corners) and the bugs kept getting 
-stuck at these sharp corners. The second iteration had 
-rounded corners which remove the issue of the first design but still have the problem of which the bugs 
-would spend most of the time traversing the edges of the stage instead of interacting with the obstacles 
-inside the stage. The current design which is the cloudy border would minimize these two previous problems, 
-but the getting ''stuck'' behavior still occur, but for different reasons. For the first two border designs 
-the bugs were getting stuck mainly because of the chirality of there movements in combination with the border 
-design of straight edges with rounded or sharp corners. The chirality of these robots was a random property that 
-could not be controlled in before hand, also given the fact that the robots are suppose to be toys for children, 
+One behavior that happens in almost all the experiments is where the 
+bugs become stuck at the boundary edges of the arena, see \cref{fig:boundary}. 
+This was a big issue with the two previous designs of the border 
+where we first had a rectangular border with $90^\circ$ 
+corners(right boundary in \cref{fig:boundary} without the rounded corners) 
+and the bugs kept getting stuck at these sharp corners. 
+The second iteration had rounded corners which remove the 
+issue of the first design but still have the problem of which the bugs 
+would spend most of the time traversing the edges of the stage 
+instead of interacting with the obstacles inside the stage. 
+The current design which is the cloudy border would minimize 
+these two previous problems, but the getting ''stuck'' behavior 
+still occur, but for different reasons. For the first two border designs, 
+the bugs were getting stuck mainly because of the chirality of there 
+movements in combination with the border design of straight edges with 
+rounded or sharp corners. The chirality of these robots was a 
+random property that could not be controlled in before hand, 
+also given the fact that the robots are suppose to be toys for children, 
 this unexpected property was no surprise. 
 
-With the current ''cloudy'' border(left model in \cref{fig:boundary}) the bugs are instead 
-getting stuck when they are going against each other in the opposite direction and they are in some sort 
-of equilibrium where the forces from each bugs in different directions balance out and the group of bugs stay still 
-for some seconds until the equilibrium breaks and each bugs go their own way again. Of course the chirality of the 
-bugs and the stage design still plays a role in this but it is not obvious as in the previous two border designs. 
+With the current ''cloudy'' border(left model in \cref{fig:boundary}) 
+the bugs are instead getting stuck when they are going against each 
+other in the opposite direction and they are in some sort 
+of equilibrium where the forces from each bugs in different 
+directions balance out and the group of bugs stay still 
+for some seconds until the equilibrium breaks and each bugs go 
+their own way again. Of course the chirality of the bugs 
+and the stage design still plays a role in this but it is not 
+obvious as in the previous two border designs. Moreover, the 
+number of the bugs does play a role in this behavior where 
+more number of bugs will make this congestion behavior happen 
+more frequently, see for example the velocity distribution in 
+\cref{fig:velkde_1WNCNB}.
+
 Some example of bugs getting stuck is shown in \cref{fig:BB}.
 
-
 \begin{figure}[htpb!]
-\centering
-%\captionsetup{justification=centering,margin=2cm}
-\subfloat[2 bugs\label{fig:0W300C10B_2BB}]
-{\includegraphics[width=.2\textwidth]{figure/BB/2BB/0W300C10B/0W300C10B_2BB_post.png}} \quad
-\subfloat[3 bugs\label{fig:0W100C20B_3BB}]
-{\includegraphics[width=.2\textwidth]{figure/BB/3BB/0W100C20B/0W100C20B_3BB_post.png}} \quad
-\subfloat[4 bugs\label{fig:0W300C25B_4BB}]
-{\includegraphics[width=.2\textwidth]{figure/BB/4BB/0W300C25B/0W300C25B_4BB_post.png}} \quad
-\subfloat[5 bugs\label{fig:0W400C25B_5BB}]
-{\includegraphics[width=.2\textwidth]{figure/BB/5BB/0W400C25B/0W400C25B_5BB_post.png}}\\
-\subfloat[6 bugs\label{fig:1W200C25B_6BB}]
-{\includegraphics[width=.2\textwidth]{figure/BB/6BB/1W200C25B/1W200C25B_6BB_post.png}} \quad
-\subfloat[7 bugs\label{fig:0W1200C15B_7BB}]
-{\includegraphics[width=.2\textwidth]{figure/BB/7BB/0W1200C15B/0W1200C15B_7BB_post.png}} \quad
-\subfloat[8 bugs\label{fig:1W800C25B_8BB}]
-{\includegraphics[width=.2\textwidth]{figure/BB/8BB/1W800C25B/1W800C25B_8BB_post.png}} \quad
-\subfloat[9 bugs\label{fig:2W300C25B_9BB}]
-{\includegraphics[width=.2\textwidth]{figure/BB/9BB/2W300C25B/2W300C25B_9BB_post.png}}
+    \centering
+    \subfloat[2 bugs\label{fig:0W300C10B_2BB}]
+    {\includegraphics[width=.2\textwidth]{figure/BB/2BB/0W300C10B/0W300C10B_2BB_post.png}} \quad
+    \subfloat[3 bugs\label{fig:0W100C20B_3BB}]
+    {\includegraphics[width=.2\textwidth]{figure/BB/3BB/0W100C20B/0W100C20B_3BB_post.png}} \quad
+    \subfloat[4 bugs\label{fig:0W300C25B_4BB}]
+    {\includegraphics[width=.2\textwidth]{figure/BB/4BB/0W300C25B/0W300C25B_4BB_post.png}} \quad
+    \subfloat[5 bugs\label{fig:0W400C25B_5BB}]
+    {\includegraphics[width=.2\textwidth]{figure/BB/5BB/0W400C25B/0W400C25B_5BB_post.png}}\\
+    \subfloat[6 bugs\label{fig:1W200C25B_6BB}]
+    {\includegraphics[width=.2\textwidth]{figure/BB/6BB/1W200C25B/1W200C25B_6BB_post.png}} \quad
+    \subfloat[7 bugs\label{fig:0W1200C15B_7BB}]
+    {\includegraphics[width=.2\textwidth]{figure/BB/7BB/0W1200C15B/0W1200C15B_7BB_post.png}} \quad
+    \subfloat[8 bugs\label{fig:1W800C25B_8BB}]
+    {\includegraphics[width=.2\textwidth]{figure/BB/8BB/1W800C25B/1W800C25B_8BB_post.png}} \quad
+    \subfloat[9 bugs\label{fig:2W300C25B_9BB}]
+    {\includegraphics[width=.2\textwidth]{figure/BB/9BB/2W300C25B/2W300C25B_9BB_post.png}}
 
-\caption{Example of situations where the bugs become stuck when coming in contact with 
-one another and the border of the arena. The direction of where the bugs are pushing is marked with black arrows. 
-Each figure shows different number of bugs that are involved, 2 bugs in \textbf{(a)}, 3 bugs in \textbf{(b)}, 
-4 bugs in \textbf{(c)}, 5 bugs in \textbf{(d)}, 6 bugs in \textbf{(e)}, 7 bugs in \textbf{(f)}, 
-8 bugs in \textbf{(g)} and 9 bugs in \textbf{(h)}} 
-\label{fig:BB}
+    \caption{Example of situations where the bugs become 
+    stuck when coming in contact with one another and the 
+    border of the arena. The direction of where the bugs 
+    are pushing is marked with black arrows. Each figure 
+    shows different number of bugs that are involved, 
+    2 bugs in \textbf{(a)}, 3 bugs in \textbf{(b)}, 
+    4 bugs in \textbf{(c)}, 5 bugs in \textbf{(d)}, 
+    6 bugs in \textbf{(e)}, 7 bugs in \textbf{(f)}, 
+    8 bugs in \textbf{(g)} and 9 bugs in \textbf{(h)}} 
+    \label{fig:BB}
 \end{figure}
 
-The situation shown in \cref{fig:BB} is an example of the active particles working against each other by preventing 
-each other from moving. This behavior can be categorised as ''Anti Cooperative Behaviour'' i.e. some collective 
-behavior that minimize the active particles movement, as oppose to Cooperative behavior where the bugs 
+The situation shown in \cref{fig:BB} is an example of the active 
+particles working against each other by preventing each other from moving. 
+This behavior can be categorised as ''Anti Cooperative Behaviour'' 
+i.e. some collective behavior that minimize the active particles 
+movement, as oppose to Cooperative behavior where the bugs 
 help each other to maximize the groups movements.
 
-There are many scenarios where cooperative behavior occurs where the bugs assist each other to move in 
-various ways, some easier to observed than others. Here some cases of cooperative behavior will be presented. 
-With regard of the restrictions of this format, only the cases that can be clearly visualized will be presented. 
+There are many scenarios where cooperative behavior occurs where 
+the bugs assist each other to move in various ways, some easier 
+to observed than others. Here some cases of cooperative behavior 
+will be presented. With regard of the restrictions of this format, 
+only the cases that can be clearly visualized will be presented. 
 The first example is shown in \cref{fig:CBPO}. 
 
 \begin{figure}[htpb!]
 \centering
-%\captionsetup{justification=centering,margin=2cm}
 \captionsetup[subfigure]{labelformat=empty}
 \subfloat[$t_0$\label{fig:0W700C25B_frame1}]
 {\includegraphics[width=.2\textwidth]{figure/CBPO/0W700C25B/0W700C25B_CBPO_post_frame1.png}} \quad
@@ -690,8 +643,9 @@ The first example is shown in \cref{fig:CBPO}.
 \subfloat[$t_3$\label{fig:0W900C10B_frame4}]
 {\includegraphics[width=.2\textwidth]{figure/CBPO/0W900C10B/0W900C10B_CBPO_post_frame4.png}}
 
-\caption{Three different examples of cooperative behavior showing how the bugs assist one another 
-to push away obstacles. It would take much longer time without other bugs helping. 
+\caption{Three different examples of cooperative behavior 
+showing how the bugs assist one another to push away obstacles. 
+It would take much longer time without other bugs helping. 
 The direction of the bugs is marked with black arrows.}
 \label{fig:CBPO}
 \end{figure}
