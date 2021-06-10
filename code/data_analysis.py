@@ -18,6 +18,9 @@ import matplotlib.image as mpimg
 import scipy.io as scio
 from scipy.ndimage import uniform_filter1d
 
+
+
+
 def read_data(listOfFiles):
 
     angularVelocityDict = {}
@@ -726,16 +729,20 @@ def mixed_plots():
     o1 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/velocity_plots/0W1000C1B_vt.pdf'
     l2 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W1000C1B*'
     o2 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/traj_images/0W1000C1B_traj.pdf'
+    l3 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/0W1000C1B*'
+    o3 = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/msd_plots/0W1000C1B_msd_chan.pdf'
 
-    inpath = l1
-    outpath = o1
+    inpath = l3
+    outpath = o3
 
     pl.update_settings(usetex=True)
     fig, axs = pl.create_fig(ncols=1, nrows=1, height=1.65)
     
+    plot_msd_ensemble_test(inpath, axs)
+
     #plot_trajs_test(inpath, axs)
     
-    plot_time_velocity(inpath, axs)
+    #plot_time_velocity(inpath, axs)
 
     #plot_orientation_old_test(l1, N1, axs[0])
     #pl.add_label(axs[0], text='(a)')
@@ -930,7 +937,7 @@ def plot_orientation_old_test(path, N, ax):
 def plot_time_velocity(path, ax):
     mpp = 0.89/1266
     fps = 30            
-    travers = np.array([[686, 722], 
+    travers_frame = np.array([[686, 722], 
     [1946, 2066],
     [2177, 2242],
     [2545, 2586],
@@ -944,6 +951,7 @@ def plot_time_velocity(path, ax):
     [4790, 4907],
     [5038, 5135]])
 
+    
     listOfFiles = glob.glob(path)
     listOfFiles = natsorted(listOfFiles)
     listOfFiles = listOfFiles[:] 
@@ -960,7 +968,7 @@ def plot_time_velocity(path, ax):
         data = pd.read_hdf(file, 'df')
         
         nbrFrames = np.max(list(set(data.frame)))
-      
+
         vel = np.zeros((nbrFrames+1, 2))
         vel[:, 0] = np.arange(0, nbrFrames+1)
 
@@ -976,32 +984,49 @@ def plot_time_velocity(path, ax):
         
             vel[f, 1] = sum/nbrParticles
             
-            #c += 1
-            #if c == 3000:
-            #    break
-        
-        
-              
-        #print(data.frame.tolist()[-1])
-        #print(data.index)
-        #vel = np.sqrt(data.dx**2 + data.dy**2)*mpp*fps
-        #vel = vel.values.tolist()
-        #d[label] = vel[:1500]
-        #vel = vel[vel[:, 1] > 0]
-        vel[:, 1] = uniform_filter1d(vel[:, 1], size=20)
+        vel[:, 1] = uniform_filter1d(vel[:, 1], size=30)
 
-        start, stop = 2586, 3307
-        #vel[:, 0] = vel[:, 0]/fps
-        ax.plot(vel[start:stop, 0], vel[start:stop, 1], '-')
-        
-        #for seg in travers:
-        #    if seg[0] >= start and seg[1] <= stop:
-        #        ax.plot(vel[seg[0]:seg[1], 0], vel[seg[0]:seg[1], 1], '-r')       
+        chan_frame = np.array([[2841, 3041], 
+        [3307, 3592], 
+        [3723, 3839], 
+        [4790, 5135]])
+        start_frame, stop_frame = 2586, 5200
+
+        vel[:, 0] = vel[:, 0]/fps
+        # chan = chan/fps
+        # start = start/fps
+        # stop = stop/fps
+
+        ax.plot(vel[start_frame:stop_frame, 0], vel[start_frame:stop_frame, 1], '-')
+        text = ['(a)', '(b)', '(c)', '(d)']
+
+        for i, seg_frame in enumerate(chan_frame):
+            if seg_frame[0] >= start_frame and seg_frame[1] <= stop_frame:
+                f0 = seg_frame[0]
+                f1 = seg_frame[1]
+                t0 = vel[f0, 0]
+                t1 = vel[f1, 0]
+
+                ax.plot(vel[f0:f1, 0], vel[f0:f1, 1], '-r')
+
+                t = 0.23
+                b = 0.225
+
+                ax.plot([t0, t1], [t, t], color='black', linewidth=1)
+                ax.plot([t0, t0], [t, b], color='black', linewidth=1)
+                ax.plot([t1, t1], [t, b], color='black', linewidth=1)
+                ax.text(int((t1-t0)/2)+t0, 
+                0.25, 
+                r'\textbf{{{}}}'.format(text[i]), 
+                ha='center',
+                va='center')
+                
+                
 
 
        
-    title = expName   
-
+    title = 'One bug experiment'   
+    ax.set_ylim([0, 0.30])
     ax.set_title(title)
     ax.set_xlabel(r't [s]')
     ax.set_ylabel(r'v [m/s]')
@@ -1066,7 +1091,173 @@ def plot_trajs_test(path, ax):
     
         ax.set_title(fileName)
 
+def plot_msd_ensemble_test(path, ax):
+    s = path.split('/')[-1]
+    sw = s.split('W')[0]
+    sc = s.split('W')[1].split('C')[0]
+    sb = s.split('W')[1].split('C')[1].split('B')[0]
     
+    N = 5
+
+    if sw == '*':
+        N = 0
+    elif sc == '*':
+        N = 1
+    elif sb == '*':
+        N = 2
+    else:
+        pass
+
+    mpp = 0.89/1266
+    fps = 30            #yeah fps = 1
+    max_lagtime = 3000    # frames
+    
+   
+    listOfFiles = glob.glob(path)
+    listOfFiles = natsorted(listOfFiles)
+    listOfFiles = listOfFiles[:] 
+    slope_short = np.zeros(len(listOfFiles))
+    slope_long = np.zeros(len(listOfFiles))
+    A_short = np.zeros(len(listOfFiles))
+    A_long = np.zeros(len(listOfFiles))
+
+
+    for ifile, file in enumerate(listOfFiles[:]):
+        fileName = ntpath.basename(file)
+        expName = fileName.split('.')[0]
+        
+
+        nbrWeight = int(expName.split('W')[0])
+        nbrObstacles = int(expName.split('W')[1].split('C')[0])
+        nbrActive = int(expName.split('W')[1].split('C')[1].split('B')[0])
+
+        if nbrObstacles == 0:
+            bugTitle = r'$N_{passive}=%d$' % (nbrObstacles)
+        else:
+            bugTitle = r'$N_{passive}=%d$ and $m_{passive}=%d\cdot10^{-3}$kg' % (nbrObstacles, nbrWeight * 5 + 2)
+
+        bugLabel = r'$N_{active}=%d$' % (nbrActive)
+
+        weightTitle = r'$N_{passive}=%d$ and $N_{active}=%d$' % (nbrObstacles, nbrActive)
+        weightLabel = r'$m_{passive}$=%d$\cdot10^{-3}$kg' % (nbrWeight * 5 + 2)
+
+        obstaclesTitle = r'$m_{passive}=%d\cdot10^{-3}$kg and $N_{active}=%d$' % (nbrWeight * 5 + 2, nbrActive)
+        obstaclesLabel = r'$N_{passive}=%d$' % (nbrObstacles)
+
+        if N == 0:
+            title = weightTitle
+            label = weightLabel
+        elif N == 1:
+            title = obstaclesTitle
+            label = obstaclesLabel
+        elif N == 2:
+            title = bugTitle
+            label = bugLabel
+        else:
+            title = expName
+            label = expName
+
+        with tp.PandasHDFStore(file) as s:
+            trajs = pd.concat(iter(s))
+
+        s.close()
+
+        chan_frame = np.array([[2841, 3041], 
+        [3307, 3592], 
+        [3723, 3839], 
+        [4790, 5135]])
+
+        f1 = chan_frame[0, 0]
+        f2 = chan_frame[0, 1]
+        f3 = chan_frame[1, 0]
+        f4 = chan_frame[1, 1]
+        f5 = chan_frame[2, 0]
+        f6 = chan_frame[2, 1]
+        f7 = chan_frame[3, 0]
+        f8 = chan_frame[3, 1]
+
+        if 'P' in expName:
+            trajs = tp.filter_stubs(trajs, 10)
+            trajs = trajs[(trajs['mass'] > 2000)] # for older vids 3000
+        else:
+            trajs = tp.filter_stubs(trajs, 10)  #  10
+            trajs = trajs[(trajs['mass'] > 4500)] # 4500
+
+            trajs_chan1 = trajs[(trajs['frame'] >= f1)] # 4500
+            trajs_chan1 = trajs_chan1[(trajs_chan1['frame'] <= f2)]
+
+            trajs_chan2 = trajs[(trajs['frame'] >= f3)] # 4500
+            trajs_chan2 = trajs_chan2[(trajs_chan2['frame'] <= f4)]
+
+            trajs_chan3 = trajs[(trajs['frame'] >= f5)] # 4500
+            trajs_chan3 = trajs_chan3[(trajs_chan3['frame'] <= f6)]
+
+            trajs_chan4 = trajs[(trajs['frame'] >= f7)] # 4500
+            trajs_chan4 = trajs_chan4[(trajs_chan4['frame'] <= f8)]
+
+            trajs_form = trajs[(trajs['frame'] >= f6)] # 4500
+            trajs_form = trajs_form[(trajs_form['frame'] <= f7)]
+    
+        
+            
+        em = tp.emsd(trajs, mpp, fps=fps, max_lagtime=max_lagtime)
+        em_chan1 = tp.emsd(trajs_chan1, mpp, fps=fps, max_lagtime=max_lagtime)
+        em_form = tp.emsd(trajs_form, mpp, fps=fps, max_lagtime=max_lagtime)
+        #em_chan2 = tp.emsd(trajs_chan2, mpp, fps=fps, max_lagtime=max_lagtime)
+        #em_chan3 = tp.emsd(trajs_chan3, mpp, fps=fps, max_lagtime=max_lagtime)
+        #em_chan4 = tp.emsd(trajs_chan4, mpp, fps=fps, max_lagtime=max_lagtime)
+        #em_chan4 = tp.emsd(trajs_chan4, mpp, fps=fps, max_lagtime=max_lagtime)
+        
+        p = ax.plot(em.index, em, 'o', label='normal', markersize=5)
+        p_chan1 = ax.plot(em_chan1.index, em_chan1, 'o', label='using channel', markersize=5)
+        p_form = ax.plot(em_form.index, em_form, 'o', label='forming channel', markersize=5)
+        #p_chan2 = ax.plot(em_chan2.index, em_chan2, '-', label='chanelling 2', markersize=5)
+        #p_chan3 = ax.plot(em_chan3.index, em_chan3, '-', label='chanelling 3', markersize=5)
+        #p_chan4 = ax.plot(em_chan4.index, em_chan4, '-', label='chanelling 4', markersize=5)
+        #p = ax.plot(em.index, em/em.index, 'o', label=label)
+        
+        
+        #     t = 20
+        #     n = tp.utils.fit_powerlaw(em.iloc[0:t], plot=False).n.msd
+        #     A = tp.utils.fit_powerlaw(em.iloc[0:t], plot=False).A.msd
+        #     slope_short[ifile] = n
+        #     A_short[ifile] = A
+
+       
+        #     n = tp.utils.fit_powerlaw(em.iloc[t:-1], plot=False).n.msd
+        #     A = tp.utils.fit_powerlaw(em.iloc[t:-1], plot=False).A.msd
+        #     slope_long[ifile] = n
+        #     A_long[ifile] = A
+            
+
+      
+        # A_s = np.max(A_short)
+        # n_s = np.max(slope_short)
+        # x1 = em.index[1:7]
+        # y1 = 2*A_s*em.index[1:7]**n_s 
+        # ax.plot(x1, y1, 'k--', linewidth=1)
+        # ax.text(x1.values[2]*0.5, y1.values[2]*1.2, 
+        #     r'$\propto\tau^{{{:.2f}}}$'.format(n_s), rotation=0)
+        
+
+        # A_l = np.nanmin(A_long)
+        # n_l = np.nanmin(slope_long)
+        # x2 = em.index[100:400]
+        # y2 = 0.8*A_l*em.index[100:400]**n_l
+        # ax.plot(x2, y2, 'k--', linewidth=1)
+        # ax.text(x2.values[200]*0.5, y2.values[200]*0.2, 
+        #     r'$\propto\tau^{{{:.2f}}}$'.format(n_l), rotation=0)
+       
+        
+            
+    title = 'One bug experiment'
+    ax.set_title(title)
+    ax.set_xscale('log')
+    ax.set_yscale('log')
+    ax.set_xlabel(r'lagtime $\tau$ [s]')
+    ax.set_ylabel(r'MSD($\tau$) [$m^2$]')
+    #ax.set_ylabel(r'MSD($\tau$)/$\tau$ [$m^2$]')
+    ax.legend(loc='lower right')  # prop={'size': 5}
 
 #dataPath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/traj_data/1W*C10B*'
 #imagePath = 'C:/Users/THOMAS/Desktop/masters_thesis_2021/code/image_sequences/1W1000C*'

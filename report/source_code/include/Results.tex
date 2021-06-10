@@ -793,7 +793,7 @@ is shown in \cref{fig:CM_0W900C10B}.
 \centering
 \subfloat{\includegraphics[width=.7\textwidth]{figure/CM/0W900C10B/0W900C10B_CM_post_1.png}}
 \caption{A bug propagating through a long channel that stretches over the stage, 
-startin from the upper left corner going to the lower right corner.
+starting from the upper left corner going to the lower right corner.
 This experiment was done with $N_{\text{active}}=10$, $N_{\text{passive}}=900$ and 
 $m_{\text{passive}}=\SI{2e-3}{kg}$. The trajectory of where the bug traverses along the 
 channel is marked with a dashed red line, the start of the trajectory is marked as $\vdash$ and the 
@@ -827,11 +827,12 @@ With only one bug, it is easier to track its behavior, as seen in \cref{fig:CM_0
 \subfloat[$t_{\text{duration}}=\SI{11}{\second}$\label{fig:CM_0W1000C1B_4}]
 {\includegraphics[width=.45\textwidth]{figure/CM/0W1000C1B/0W1000C1B_CM_post_4.png}}
 \caption{Four occurrences in the same experiment where a bug is reusing preexisting channels. 
+Depending on the length of the channel, it takes different time for the bug to go through 
+the whole channel ranging from $t_{\text{duration}}=\SI{4}{\second}$ in \textbf{(c)} to 
+$t_{\text{duration}}=\SI{11}{\second}$ in \textbf{(b)} and \textbf{(d)}.
 Since there is only one bug in this experiment, this bug both create and reuse its own channel.
 This experiment was done with $N_{\text{active}}=1$, $N_{\text{passive}}=1000$ and 
-$m_{\text{passive}}=\SI{2e-3}{kg}$. The trajectory of where the bug traverses along the 
-channel is marked with a dashed red line, the start of the trajectory is marked as $\vdash$ and the 
-end with $\rightarrow$. The bug that traverses this trajectory is marked with a black dot.} 
+$m_{\text{passive}}=\SI{2e-3}{kg}$.} 
 \label{fig:CM_0W1000C1B}
 \end{figure}
 
@@ -862,52 +863,71 @@ channel is presented in \cref{fig:CM_0W900C25B}.
 \caption{Situation where several bugs traverse through the same channel, 
 7 bugs in \textbf{(a)} and 2 bugs in \textbf{(b)}.
 This experiment was done with $N_{\text{active}}=25$, $N_{\text{passive}}=900$ and 
-$m_{\text{passive}}=\SI{2e-3}{kg}$. The trajectory of where the bug traverses along the 
-channel is marked with a dashed red line, the start of the trajectory is marked as $\vdash$ and the 
-end with $\rightarrow$. The bugs that traverse the red trajectory are marked with black dots.} 
+$m_{\text{passive}}=\SI{2e-3}{kg}$.} 
 \label{fig:CM_0W900C25B}
 \end{figure}
 
 
-With the one bug example in \cref{fig:CM_0W1000C1B}, its behavior can be deduced by looking at the time 
+With the one bug example in \cref{fig:CM_0W1000C1B}, its channelling behavior 
+can also be observed by looking at the time 
 evolution of its velocity $v$, reported in \cref{fig:CM_0W1000C1B_vt}.
 
-\begin{figure}[htbp!]
-\centering
-\subfloat{\includegraphics[width=.7\textwidth]{figure/CM/0W1000C1B/0W1000C1B_CM_velocity_time_raw.png}}
-\caption{Velocity-time graph showing how the velocity of the bug in \cref{fig:CM_0W1000C1B}, evolves through time. 
- The velocity curve here is visualized after using a smoothing function since the raw velocity 
- data is too noisy to make any qualitative judgements.} 
-\label{fig:CM_0W1000C1B_vt}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.7\textwidth]{figure/velocity/0W1000C1B_vt.pdf}
+    \caption{Velocity-time graph showing how the velocity of 
+    the bug in \cref{fig:CM_0W1000C1B}, evolves through time. 
+    The red segments of the curve marked with \textbf{(a)}, \textbf{(b)}, 
+    \textbf{(c)} and \textbf{(d)} is the period when the bug is traversing 
+    through the channels shown in \cref{fig:CM_0W1000C1B}. At the channel-using 
+    segments (red lines), the bugs velocity oscillate around a higher velocity 
+    than the blue segments, where the bug is instead forming channels. In the 
+    channel-using segment \textbf{(d)} there is a short velocity dip in the middle. 
+    Eventhough this being a channel-using segment, the bug collide against the walls 
+    of the channel and push for a short period of time before returning to going through 
+    the already existing channel again.} 
+    \label{fig:CM_0W1000C1B_vt}
 \end{figure}
 
-In this figure it can seen that the velocity is fluctuating between minima- and maxima values. 
-As expected the minimas marked  \textbf{(a)} and \textbf{(d)} connects to the situations 
-where the bug is being blocked by trying to penetrate through the obstacles. The maximas marked in 
-\textbf{(b)} and \textbf{(c)} is the scenario where the bug moves unhindered through a channel. 
-Snapshots of these four points is shown in \cref{fig:0W1000C1B_vt_refer}
+This figure shows how the bugs velocity vary depending on its behavior, whether 
+the bug is reusing an already existing channel or the bug is forming a new channel. 
+When the bug is reusing a channel, its velocity oscillates around a relatively 
+higher velocity(red segments in \cref{fig:CM_0W1000C1B_vt}) 
+than when it is forming a channel(blue segments in \cref{fig:CM_0W1000C1B_vt}). 
+This velocity differences is due to the simple fact that, when the bug 
+is reusing a channel, it can move throgh obstacle-free spaces unhindered 
+and is able to maintain its high speed throughout the stretch of the channel. 
+On the other hand, when the bug is forming a channel, it instead spending 
+most of it time pushing obstacles trying to form new channels, which will 
+inevitably slow its speed down.   
 
-\begin{figure}[htbp!]
-\centering
-\subfloat[\label{fig:0W1000C1B_vt_refer_a}]
-{\includegraphics[width=.30\textwidth]{figure/CM/0W1000C1B/0W1000C1B_CM_post_a.png}}\quad
-\subfloat[\label{fig:0W1000C1B_vt_refer_b}]
-{\includegraphics[width=.30\textwidth]{figure/CM/0W1000C1B/0W1000C1B_CM_post_b.png}}\\
-\subfloat[\label{fig:0W1000C1B_vt_refer_c}]
-{\includegraphics[width=.30\textwidth]{figure/CM/0W1000C1B/0W1000C1B_CM_post_c.png}}\quad
-\subfloat[\label{fig:0W1000C1B_vt_refer_d}]
-{\includegraphics[width=.30\textwidth]{figure/CM/0W1000C1B/0W1000C1B_CM_post_d.png}}
-\caption{This figure shows four snapshot of the experiment with
-$N_{\text{active}}=1$, $N_{\text{passive}}=1000$ and 
-$m_{\text{passive}}=\SI{2e-3}{kg}$. Each of these four figures represent the marked 
-maximas and minimas in \cref{fig:CM_0W1000C1B_vt}} 
-\label{fig:0W1000C1B_vt_refer}
-\end{figure}
+% In this figure it can seen that the velocity is fluctuating between minima- and maxima values. 
+% As expected the minimas marked  \textbf{(a)} and \textbf{(d)} connects to the situations 
+% where the bug is being blocked by trying to penetrate through the obstacles. The maximas marked in 
+% \textbf{(b)} and \textbf{(c)} is the scenario where the bug moves unhindered through a channel. 
+% Snapshots of these four points is shown in \cref{fig:0W1000C1B_vt_refer}
 
-As expected the points with low velocity, \textbf{(a)} and \textbf{(d)} in 
-\cref{fig:CM_0W1000C1B_vt}, relates to when the bug is being blocked by obstacles, which are the scenarios 
-in \cref{fig:0W1000C1B_vt_refer_a,fig:0W1000C1B_vt_refer_d}. The 
-two velocity maximas \textbf{(b)} and \textbf{(c)} shows instead that the bug is 
-traversing through a channel unhindered which \cref{fig:0W1000C1B_vt_refer_b,fig:0W1000C1B_vt_refer_c}
-confirms.
+% \begin{figure}[htbp!]
+% \centering
+% \subfloat[\label{fig:0W1000C1B_vt_refer_a}]
+% {\includegraphics[width=.30\textwidth]{figure/CM/0W1000C1B/0W1000C1B_CM_post_a.png}}\quad
+% \subfloat[\label{fig:0W1000C1B_vt_refer_b}]
+% {\includegraphics[width=.30\textwidth]{figure/CM/0W1000C1B/0W1000C1B_CM_post_b.png}}\\
+% \subfloat[\label{fig:0W1000C1B_vt_refer_c}]
+% {\includegraphics[width=.30\textwidth]{figure/CM/0W1000C1B/0W1000C1B_CM_post_c.png}}\quad
+% \subfloat[\label{fig:0W1000C1B_vt_refer_d}]
+% {\includegraphics[width=.30\textwidth]{figure/CM/0W1000C1B/0W1000C1B_CM_post_d.png}}
+% \caption{This figure shows four snapshot of the experiment with
+% $N_{\text{active}}=1$, $N_{\text{passive}}=1000$ and 
+% $m_{\text{passive}}=\SI{2e-3}{kg}$. Each of these four figures represent the marked 
+% maximas and minimas in \cref{fig:CM_0W1000C1B_vt}} 
+% \label{fig:0W1000C1B_vt_refer}
+% \end{figure}
+
+% As expected the points with low velocity, \textbf{(a)} and \textbf{(d)} in 
+% \cref{fig:CM_0W1000C1B_vt}, relates to when the bug is being blocked by obstacles, which are the scenarios 
+% in \cref{fig:0W1000C1B_vt_refer_a,fig:0W1000C1B_vt_refer_d}. The 
+% two velocity maximas \textbf{(b)} and \textbf{(c)} shows instead that the bug is 
+% traversing through a channel unhindered which \cref{fig:0W1000C1B_vt_refer_b,fig:0W1000C1B_vt_refer_c}
+% confirms.
 
