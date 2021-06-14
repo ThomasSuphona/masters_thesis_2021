@@ -1,0 +1,91 @@
+Slide 1
+    Hello and welcome to my thesis presentation.
+    I've met many of you before, many of you I haven't met.
+    My name is Thomas and I started doing this thesis two years 
+    ago with Giovanni and Alessandro as supervisor. Well the project 
+    got dragged out a bit, so forgive me if the some thing is not up to 
+    date, but I'll try to present it as clear as possible.
+    So without furthur adue I'll proceed.
+
+Slide 2
+    As seen, this thesis is called Collective behaviors of autonomous 
+    robots in complex environment, which is a mouthful of words. 
+    The keyword here is collective behaviors or synonymously 
+    collective motion which can be defined as 
+
+    "the spontaneous emergence of ordered movement in 
+    a system consisting of many self-propelled agents"
+
+    Collective behaviors is a common process in living systems 
+    and be seen everywhere in nature, in different scales both
+    macroscopic and microscopic scales. As the name suggests 
+    collective behavior involves a collection of agents or 
+    units, in other words many agents. 
+    
+    Here are some examples of systems that exhibit collective behaviors
+
+Slide 3
+    On top row you see the single unit that makes up the system and on 
+    the bottom is the collective behavior that can emerge out from a 
+    systems of similar units. In (B) we have schooling of fishes that swirls 
+    around, a defence behavior against predators. In (C) is the flock of birds
+    migrating, trevelling on flocks decrease the likelihood of being attacked 
+    by predators. (F) cooperation of ants where they are surrounding some sort 
+    of liquid. (H) spiral collective motion of bacteria.
+
+    Common to all these systems is that their individual units are capable 
+    of self-propulsion. These units are often referred to as Self-prpelled 
+    particles or Active particles.
+
+Slide 4
+    The term “active” refers here to the ability of 
+    individual units to move actively by gaining
+    kinetic energy from the environment. All living 
+    organisms in different scales can be seen as active particles.
+
+    In microscale we have for example, motile cells, bacteria, synthetic 
+    microswimmers. In macroscale already mentioned animals, robots 
+    which can be considered as artificial self-propelled particles 
+    and also humans. Which can show collective behavior such as situation 
+    where pedestrians spontaneously organizing into traffic lanes when 
+    moving in opposite directions on a crowded hallway.
+
+    Here are some active particles in different scales.
+
+Slide 5
+    In microscale, the kinesin protein walking along microtubule 
+    filaments and bacteria swimming on a petri dish.
+    I macroscale, a herd of wild cattle crossing a river, and 
+    a swarm of starlings.
+
+    The earliest attempt to model collective behavior was done by 
+    Reynolds 1987.
+
+Slide 6
+    Reynolds introduced the boids model to simulate the
+    swarm behavior of animals at the macroscale within computer
+    graphics applications. In 1995 Vicsek introduced the Vicsek model 
+    where the swarm behavior is modelled by active particles that are driven 
+    with a constant absolut velocity and they tend to align with the average 
+    direction of motion of the particles in their neighbourhood. 
+    The Vicsek model was the first to consider
+    collective motion in terms of a noise-induced phase transition
+    and, together with its multiple variants, has become one of
+    the most often employed models. Here the simplest form the Vicsek model 
+    is shown, how the particles position and direction is updated each time step. 
+    The positional changes is straighforward. The directional changes includes 
+    erandom noise picked from an interval and the average direction of the 
+    particles neighbours inside a radius r. 
+
+Slide 7
+    Later on several additional models have been introduced to capture the 
+    properties of collective behaviors, also experimental studies has been 
+    done on systems feature collective behaviors.
+
+    One paper that was a big inspiration for this thesis is 
+    "Metastable clusters and channels formed by active particles with
+    aligning interactions"
+
+Slide 8
+    Done by Nilsson and Volpe 2017. Here active particles were studied 
+    using numerical simulations. 
