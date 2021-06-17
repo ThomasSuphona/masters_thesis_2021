@@ -88,4 +88,287 @@ Slide 7
 
 Slide 8
     Done by Nilsson and Volpe 2017. Here active particles were studied 
-    using numerical simulations. 
+    using numerical simulations. The model used here is similar to 
+    the Vicsek model where the active particles have a short-range 
+    position-dependent aligning interactions. Again xi uniformly distributed 
+    white-noise term in an interval. Tn is a torque term that the particles 
+    exert on each other. When introducing passive particles in the simulation 
+    we can see here how the active particles behave at different noise level. 
+    Note that the motion of the passive particles are merely through translational 
+    diffusion and their displacement is significantly smaller than the active particles.
+    While the active particles move at a constant speed mentioned before. 
+
+    Here at four different noise levels, four snaphots was taken at different timesteps 
+    where we can se that when using high noise level he motion of the
+    active particles is significantly hindered by the presence of the 
+    passive particles and is essentially diffusive, this behavior is also 
+    measured using the mean square displacement seen here.
+
+Slide 9
+    as shown by the mean square displacement (MSD), the case with highest noise
+    has a slope of lesser than one at all time. The active particles compress the 
+    passive ones and create small pockets where they are confined, this leads to a 
+    subdiffusive behavior where msd(tau)/tau decreases for large tau. 
+    When decreases the noise level even more the active particles are able to move 
+    more and the motion is superdiffusive for short times where MSD is proportional 
+    to tau squared and quickly becomes diffusive when they get blocked by the 
+    passive particles. At lowest noise level of 0.03pi the superdiffusive regime is 
+    longest and we can observe the formation of fully-fledged channels,
+    whose presence is clearly shown by the blue shaded areas. 
+    These are open areas free of passive particles where the
+    active particles can propagate unhindered. 
+
+    Here video showing the active particles behaviors at different noise level.
+
+Slide 10
+    To put it simply, we want to observe this similar behavior experimentally,
+    where active particles behavior changes similar to this as some parameter 
+    is tuned. So the experimental setup was then built and this is how it looks 
+    like.
+
+Slide 11
+    The main setup consist of a main wooden frame for for the purpose 
+    of holding the glass panel in place. The glass panel is the surface 
+    for the active particles to move on. The glass panel ensures a smooth 
+    surface and provide the options to record the experiments from both 
+    above and below. A boundary frame that is placed on top of the glass 
+    panel to keep the active particles in the stage. Paper sheet on top 
+    for a homogeneous background and spotlights to improve the light conditions 
+    for the recordings that was done using a wide angle camera that was place 
+    in the bottom of the table. 
+
+    To prevent the active particles from falling of the stage, we use a boundary frame 
+    as mentioned before. Two types were used as seen here.
+
+Slide 12
+    Cloud shape and rectangular shape. The first one that were used was the rectangular 
+    shaped one. We realized quickly on that this was wasn't optimal since the 
+    bugs spend too much time going alongside the walls of this boundary as can be seen 
+    here.
+
+Slide 13
+    I used the term bug for the active particles and you'll seee why later on. 
+    Aften some times the bugs will manage to push away obstacles close to walls 
+    and form channels where they will frequently traverse along and they spend 
+    very little time at the center of the stage. The right figure here show their 
+    trajectories in red where you can see that the color is thicker close to the 4 walls 
+    showing that goes there more frequently than inside close to center. 
+
+    So a new boundary frame was made to improve this.
+
+Slide 14
+    With this new cloud boundary frame the bugs spend more time inside where 
+    they can interact with the obstacles. Now, when they hit the walls, they are 
+    instead redirected towards center again. We can also seen in the snapshot 
+    to the right where their trajectories in red in now evently distributed 
+    inside the stage and not merely concentrated close to the walls. 
+
+    Now that I've mentioned the term bug as active particles, here's why
+
+Slide 15
+    The active particles used are robot bugs of different types. 
+    They are simpe robots that can only move forward when turned on. 
+    The first one is so called toy solar bugs that has a small solar panel built 
+    in on top of the bug. The rest are different modifications of the Hexbug nano.
+
+Slide 16
+    We fist experimented with the toy solar bugs and manage to capture some footage. 
+    We used two construction lamps as source of illumination and manage to make the bugs 
+    move abit. But the bug would stop moving when coming to a darker area to which 
+    we had to relocate the bugs again to a brighter area. Also these bugs would only react 
+    to light that produce alot of heat. And when recording for too long, the bugs would 
+    get damaged from heat where parts of the body would melt. 
+
+    Here's video showing one of the first experiments using these toy solar bugs.
+
+Slide 17
+    As can be seen they would only move at bright areas, they would stop moving 
+    at darker places, where either the light is not focused or areas where the light is shaded 
+    by the obstacles.
+
+    After this we move on to use the Hexbug nano.
+
+Slide 18
+    Here in the top right figure are the Hexbug Nano is their origianl form. 
+    The Hexbug nano are more vibrant than the previous ones. We made an attemp to 
+    still using solar panel to drive the bugs, now using an external solar panel that 
+    was bigger than before to mount on top of the bugs. But we could not find a good 
+    enough arrangement of light source to make the bugs move consistently within the big stage. 
+    Also with the big solar panel mounted on top the shape of the bugs create bad interactions 
+    with other bugs where the solar panels would overlap upon collisions and they would get stuck. 
+
+    Then we try to use the bare Hexbug that is driven by batteries. These are very vibrant 
+    when using batteries and would sometimes tip over by themselves or climp over obstacles. 
+    Also the pointy head made them spend long time in digging through obstacles shown 
+    in lower left figure, instead of bouncing off to find a new path like in the lower right figure. 
+
+    So we had to futher modify these bugs.
+
+Slide 19    
+    We tried to glue 3d printed plastic circles on the head to remove the pointy head, 
+    but again these circles would overlap upon collisions and the bug would get stuck. 
+    Then we tried to wrap paper srip around the bugs body. This shown to work quite well 
+    where the bug would no longer tip over or spend to long time digging through obstacles. 
+    With the paper strip, the extra weight was negligeble and now the bug has a rod shape 
+    which create aligning interactions.
+
+    As for passive particles or obstacles
+
+Slide 20 
+    We used 3D printed cups with diameter roughly half the size of the bugs, 
+    and sligly taller than the bugs. These cups are made hollow inside where 
+    weight can be inserted. The weight used are M8 nuts and one cup can hold up 
+    to 3 nuts. So the weight of one obstacle can vary from 2 to 17 grams. 
+    The idea is to use the obstacle weight as a parameter to mimic the noise 
+    level from the simulation where high obstacle weight should provide 
+    similar conditions as high noise level in the simulation. 
+
+    The finished experimental setup looks like this.
+
+Slide 21
+    Including an image of the table taken inside the lab.
+
+Slide 22
+    So, what are we looking for when conduction the experiments? 
+    In general we want to see how the active particles behaviors changes 
+    when we tune a parameter. Whether or not similar behaviors can be observed 
+    as in the simulation. If there is some sort of transition from disordered 
+    movement of the individual active particles to highly aligned collective 
+    motion. Also if there are any other collective beaviors that can be observed.
+
+    The parameter at hand that we can change are the obstacle weight, 
+    the obstacle density and the number of active particles. 
+
+Slide 23
+    Before doing the experiments we can already guess for example 
+    that increasing the obstacle density should minimize the bugs 
+    motion, as well as increasing the obstacle weight. Less intuitive 
+    is the number of bugs. More bugs mike lead to more formation of channels 
+    that the bugs can move through, or they might just hinder each other 
+    due to congestion.
+
+    Lets first look at how the obstacle density affects the bugs behavior.
+
+Slide 24
+    To the left we se the bugs trajetories after a 1000 frames, showing 
+    the stage at four different obstacle density. You clearly see how the 
+    stage is almost covered in red trajectories when the obstacle density is 
+    low with 400 obstacles. As wee increase the obstacle density, 
+    the trajectories gets less dens and with 1300 obstacles, the trajectories 
+    is concentrated only in small area. This show how the bugs are being blocked 
+    in the same place for a long time. 
+
+    On top right is the bugs MSD when using different obstacle density. 
+    We can see that the MSD is higher when the obstacle density is low. 
+    With a slope slightly steeper for the low for the low obstacles density cases. 
+    Also the bugs velocity density distribution show that the density for lower 
+    obstacle density peak at a higher velocity, compare the high obstacle density cases. 
+    These experiments were done by varying the obstacle density while keeping the 
+    obstacle weight and the number of bugs fixed. The same result holds while using 
+    other obstacle weights and number of bugs, while varying the obstacle density.
+
+Slide 25
+    Now when varying the obstacle weight, similarly we see that the trajectories 
+    is spread out across the entire stage when using light obstacles, here the lightest 
+    ones being 2 grams. As the obstacle weigh increases, the trajectories is less 
+    spread out and with the highest obstacle weight of 17 grams, the trajectories 
+    is only concentrated in small area. We also see the MSD for different obstacle 
+    weight cases where the MSD is higher for lower obstacle weights, also with a 
+    steeper slope. The velocity density show also that the peak shifts towards zero 
+    velocity as the obstacle weight increses.
+
+Slide 26
+    Lastly varying the number of bugs. The trajectories doesn't say much about 
+    this parameter since more bugs leaves more trajectories. If we instead look 
+    at the MSD, we see a slight difference where the MSD is slightly higher when the 
+    number of bugs is low and the velocity density shows that the peaks shifts to 
+    the left towards zero as the number of bugs increases. 
+
+    Maybe not as intuitive of a result compared to the other parameters. 
+    But there is an explanation of why this is the case. 
+    Before I get into that, lets see how the bugs orietation changes 
+    in different conditions.
+
+Slide 27
+    The orientation was a bit hard to measure. We study the orientational changes 
+    by looking at the angular velocity and see how the different parameters 
+    affect it. The angular velocity density distribution is shown for different 
+    parameters. Eventhough the different experiments peaks at zero, we can observe 
+    minor differences where increasing the obstacle density leads to a higher 
+    peak at zero angular velocity, in top figure. This show that at high obstacle 
+    density the bugs has less space to turn, hence low angular velocity. 
+    Increasing the number of bugs also leads to a higher peak at zero, lower left figure. 
+    Though when increasing the the obstacle weight, the peak seems to be lower. 
+    This can be due to when the bugs collide with a heavier obstacle, it bounces off 
+    changing its direction more abruptly than it would with a light obstacle 
+    where it instead push the obstacle forward abit before changing its direction.
+
+    Next we go through some collective behaviors that were observed.
+
+Slide 28
+    Remember the issues concerning the boundary frames where the currently 
+    used cloud shaped boundary was suppose to redirect the bugs to center. 
+    Well it does that quite well, but the bugs sometimes still get stuck 
+    at the walls now due to other bugs blocking. They're going against each 
+    other at the walls preventing each other to move. Here we see snapshots 
+    where different number of bugs are involved, from 2 to 9 bugs.
+
+    This explain what was seen earlier when using the number of bugs as a parameter. 
+    That the MSD is lower when the number of bugs increases, because of this congestion 
+    behavior.
+
+Slide 29
+    Another collective behavior is when the bugs help each other to push away 
+    large blocks of obstacles. One bug might not be strong enough to push 
+    it all by itself, but with other bugs assistance they are able to push 
+    away many obstacles, clearing path for other bugs to go through.
+    On top figure one bug trying to push the obstacles to its right, then two 
+    more bugs come to assist and they manage to clear away this big block. 
+    Two other examples below.
+
+Slide 30
+    It also happens that the bugs help each other by pushing onto one another. 
+    For example in the top row, one bug is trying to go through a narrow passage 
+    but get stuck, then another bug comes behind and push the first one and they 
+    both manage to go through this passage. Here in the bottom, a bug spend long 
+    time digging through obstacles trying to form a channel, another bug then 
+    comes to assistance by pushing the first one and speeds up the process 
+    of creating channel.
+
+Slide 31
+    Next behavior is when a bug circling inside a circle shaped channel for many 
+    lapses. Here up to 7 lapses. The bugs manage to stay inside this type 
+    of channel for many lapses partly due to its chirality, but also the fact 
+    that this type of channel is more stable since the walls are made up by 
+    both obstacles and the boundary frame. This type of local channel is more 
+    stable than the ones that stretches across the stage.
+
+Slide 32
+    This type of long channels is hard to observe since they get destroy quite 
+    fast, by other bugs pushing obstacles into the channel and blocking it or 
+    bugs cutting through the walls of the channels.
+
+Slide 33 
+    Here again long channels where several bugs goes through. Occurs rarely 
+    and gets destroyed quickly.
+
+    To conclude this
+
+Slide 34
+    We saw similar result as in the simulation where the motion of the 
+    active particles get more restricted as we increase variables like 
+    the obstacle density, the obstacle weight and the number of active particles. 
+    High obstacle density and obstacle weight lead to diffusive motions. 
+    Contrarily low obstacle weight and low obstacle density lead to 
+    superdiffusive motions where the active particles were able to form 
+    channels and reuse them. We could also observe some collective behaviors.
+
+Slide 35 
+    Some improvements can be doen in the future where we can try to make 
+    the obstacles move like real passive particles that undergo translational 
+    diffusion. Also improve the video capturing process and tracking 
+    with better camera, lights or increase contrast between different objects, 
+    and maybe another tracking software. 
+
+    We could also scale up the experiment with a larger stage and more 
+    particles.
